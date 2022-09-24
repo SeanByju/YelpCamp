@@ -6,19 +6,23 @@ from Pages.yelpCampBasePage import yelpCampBasePage
 
 class yelpCampHomePage(yelpCampBasePage):
 
+    def __init__(self, driver):
+        super().__init__(driver)
+
     def get_home_nav_button(self):
 
-        driver.find_element(By.XPATH,'//a[text()="Home"]')
+        driver.find_element(By.XPATH,'//nav//a[text()="Home"]')
 
     def get_campgrounds_nav_button(self):
 
-        driver.find_element(By.XPATH,'//a[text()="Campgrounds"]')
+        driver.find_element(By.XPATH,'//nav//a[text()="Campgrounds"]')
 
     def get_login_nav_button(self):
 
-        driver.find_element(By.XPATH,'//a[text()="Login"]')
+        driver.find_element(By.XPATH,'//nav//a[text()="Login"]')
 
     def get_register_button(self):
 
-        driver.find_element(By.XPATH,'//a[text()="Register"]')
+        driver.find_element(By.XPATH,'//nav//a[text()="Register"]')
+
 
