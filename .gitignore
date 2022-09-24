@@ -1,6 +1,6 @@
 node_modules
+testing/Config/config.py
 .env
 .DS_Store
  public/.DS_Store
  views/.DS_Store
-testing/Config/config.py
