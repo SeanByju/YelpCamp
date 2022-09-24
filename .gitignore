@@ -1,5 +1,5 @@
 node_modules
-testing/Config/config.py
+Testing/Config/*.py
 .env
 .DS_Store
  public/.DS_Store
