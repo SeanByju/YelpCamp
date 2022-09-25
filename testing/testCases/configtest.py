@@ -6,7 +6,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from Config.config import Config
 
-@pytest.fixture(params=["chrome","firefox","edge"],scope="class")
+@pytest.fixture(params=["chrome"],scope="class")
 def init_driver(request):
     if request.param == "chrome":
         web_driver = webdriver.Chrome(Config.CHROME_DRIVER_EXECUTABLE_PATH)
