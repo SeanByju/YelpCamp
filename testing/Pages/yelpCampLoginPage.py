@@ -6,6 +6,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 from Pages.yelpCampBasePage import yelpCampBasePage
+from Config.config import Config
+
+
 
 class yelpCampLoginPage(yelpCampBasePage):
 
@@ -13,6 +16,7 @@ class yelpCampLoginPage(yelpCampBasePage):
     USERNAME = (By.ID, "username")
     PASSWORD = (By.ID, "password")
     LOGIN_BUTTON = (By.XPATH, '//button[text()="Login"]')
+    LOGIN_URL = Config.BASE_URL+"/login"
 
     """ constructor of the page class """
     def __init__(self, driver):
