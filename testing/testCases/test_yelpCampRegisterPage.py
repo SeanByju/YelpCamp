@@ -6,6 +6,7 @@ from testing.Pages.yelpCampRegisterPage import yelpCampRegisterPage
 
 class Test_yelpCampRegisterPage(yelpCampBaseTest):
 
-    def test_register_link_visible(self):
+    def test_register_button_visible(self):
         self.yelpCampRegisterPage = yelpCampRegisterPage(self.driver)
-        self.yelpCampRegisterPage.is_register_button_visible()
+        flag = self.yelpCampRegisterPage.is_register_button_visible()
+        assert flag

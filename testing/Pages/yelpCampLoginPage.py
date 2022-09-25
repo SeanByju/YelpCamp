@@ -29,6 +29,10 @@ class yelpCampLoginPage(yelpCampBasePage):
         self.do_send_keys(self.PASSWORD, password)
         self.do_click(self.LOGIN_BUTTON)
 
+    def is_login_button_visible(self):
+
+        return self.is_element_enabled(self.LOGIN_BUTTON)
+
     
 
     

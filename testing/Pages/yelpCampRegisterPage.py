@@ -30,4 +30,5 @@ class yelpCampRegisterPage(yelpCampBasePage):
         self.do_click(self.REGISTER_BUTTON)
 
     def is_register_button_visible(self):
-        return super().is_register_button_visible()
+        
+        return super().is_enabled((By.XPATH,'//nav//a[text()="Register"]'))
