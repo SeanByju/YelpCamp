@@ -1,6 +1,6 @@
 import pytest
 
-@pytest.mark.usefixtures("")
+@pytest.mark.usefixtures("init_driver")
 class yelpCampBaseTest:
     
     USERNAME = "test"

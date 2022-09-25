@@ -16,5 +16,7 @@ def init_driver(request):
         web_driver = webdriver.Edge(Config.EDGE_DRIVER_EXECUTABLE_PATH)
     request.cls.driver = web_driver
     web_driver.implicitly_wait(5)
+    """
     yield
     web_driver.close()
+    """
