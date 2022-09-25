@@ -2,6 +2,7 @@
 # yelpCamp 
 
 
+from faulthandler import is_enabled
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -49,3 +50,8 @@ class yelpCampBasePage:
     def get_register_button(self):
 
         self.is_enabled(By.XPATH,'//nav//a[text()="Register"]')
+    
+    
+    def is_register_button_visible(self):
+        
+        return is_enabled((By.XPATH,'//nav//a[text()="Register"]'))

@@ -7,13 +7,14 @@ from selenium.webdriver.common.by import By
 
 from Pages.yelpCampBasePage import yelpCampBasePage
 
-class yelpCampLoginAPage(yelpCampBasePage):
+class yelpCampLoginPage(yelpCampBasePage):
 
     """ By locators """
     USERNAME = (By.ID, "username")
     PASSWORD = (By.ID, "password")
     LOGIN_BUTTON = (By.XPATH, '//button[text()="Login"]')
 
+    """ constructor of the page class """
     def __init__(self, driver):
         
         super().__init__(driver)
@@ -21,9 +22,6 @@ class yelpCampLoginAPage(yelpCampBasePage):
 
     """ Page Actions """
 
-    def is_username_input_visible(self):
-        
-        return WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.USERNAME))
 
     def do_login(self, username, password):
         
