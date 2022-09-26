@@ -5,7 +5,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-from Pages.yelpCampBasePage import yelpCampBasePage
+from yelpCampBasePage import yelpCampBasePage
+from TestCases.configtest import init_driver
 from Config.config import Config
 
 
@@ -39,4 +40,7 @@ class yelpCampLoginPage(yelpCampBasePage):
 
     
 
-    
+configObj = Config()
+print(configObj.CHROME_DRIVER_EXECUTABLE_PATH)
+test = yelpCampLoginPage(init_driver()).driver
+test.get(configObj.BASE_URL)

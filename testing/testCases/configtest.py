@@ -28,11 +28,11 @@ def init_driver(request):
 
 def init_driver(request="chrome"):
     if request == "chrome":
-        web_driver = webdriver.Chrome(Config.CHROME_DRIVER_EXECUTABLE_PATH)
+        web_driver = webdriver.Chrome(Config().CHROME_DRIVER_EXECUTABLE_PATH)
     if request == "firefox":
-        web_driver = webdriver.Firefox(Config.FIREFOX_DRIVER_EXECUTABLE_PATH)
+        web_driver = webdriver.Firefox(Config().FIREFOX_DRIVER_EXECUTABLE_PATH)
     if request == "edge":
-        web_driver = webdriver.Edge(Config.EDGE_DRIVER_EXECUTABLE_PATH)
+        web_driver = webdriver.Edge(Config().EDGE_DRIVER_EXECUTABLE_PATH)
     
     web_driver.implicitly_wait(5)
 

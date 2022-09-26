@@ -11,18 +11,18 @@ class yelpCampHomePage(yelpCampBasePage):
 
     def get_home_nav_button(self):
 
-        driver.find_element(By.XPATH,'//nav//a[text()="Home"]')
+        self.driver.find_element(By.XPATH,'//nav//a[text()="Home"]')
 
     def get_campgrounds_nav_button(self):
 
-        driver.find_element(By.XPATH,'//nav//a[text()="Campgrounds"]')
+        self.driver.find_element(By.XPATH,'//nav//a[text()="Campgrounds"]')
 
     def get_login_nav_button(self):
 
-        driver.find_element(By.XPATH,'//nav//a[text()="Login"]')
+        self.driver.find_element(By.XPATH,'//nav//a[text()="Login"]')
 
     def get_register_button(self):
 
-        driver.find_element(By.XPATH,'//nav//a[text()="Register"]')
+        self.driver.find_element(By.XPATH,'//nav//a[text()="Register"]')
 
 
