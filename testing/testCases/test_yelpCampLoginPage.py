@@ -1,10 +1,10 @@
 import pytest
 
-from Config.config import Config
+
 from Pages.yelpCampLoginPage import yelpCampLoginPage
 from TestCases.test_yelpCampBase import yelpCampBaseTest
-from TestCases.configtest import init_driver
-
+from configtest import init_driver
+from Config.config import Config
 
 
 class Test_yelpCampLoginPage(yelpCampBaseTest):
@@ -16,7 +16,7 @@ class Test_yelpCampLoginPage(yelpCampBaseTest):
 
     def test_login(self):
         self.yelpCampLoginPage = yelpCampLoginPage(init_driver().get(yelpCampLoginPage.LOGIN_URL))
-        self.yelpCampLoginPage.do_login(Config.USERNAME,Config.PASSWORD)
+        self.yelpCampLoginPage.do_login(Config.USERNAME, Config.PASSWORD)
 
 
 """

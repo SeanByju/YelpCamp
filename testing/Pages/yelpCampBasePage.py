@@ -1,18 +1,15 @@
-# base page object will hold all of the elements that are shared on all of the pages in
-# yelpCamp 
-
-
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
+
+"""This is the parent of all pages"""
+"""It contains all of the generic methods and utiilties for all pages"""
+
+
 class yelpCampBasePage:
 
-    
-    def __init__(self, driver):
-        
-        self.driver = driver
 
     def do_click(self, by_locator):
         WebDriverWait(self.driver,5).until(EC.visibility_of_element_located(by_locator).click())

@@ -1,5 +1,4 @@
 import pytest
-
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
@@ -26,15 +25,21 @@ def init_driver(request):
     web_driver.close()
 """
 
-def init_driver(request="chrome"):
-    if request == "chrome":
-        web_driver = webdriver.Chrome(Config().CHROME_DRIVER_EXECUTABLE_PATH)
-    if request == "firefox":
-        web_driver = webdriver.Firefox(Config().FIREFOX_DRIVER_EXECUTABLE_PATH)
-    if request == "edge":
-        web_driver = webdriver.Edge(Config().EDGE_DRIVER_EXECUTABLE_PATH)
-    
+@pytest.fixture(params=["chrome","firefox"],scope="class")
+def init_driver(request):
+    if request.param == "chrome":
+        web_driver = webdriver.Chrome(executable_path = Config.CHROME_DRIVER_EXECUTABLE_PATH)
+    if request.param == "firefox":
+        web_driver = webdriver.Firefox(executable_path = Config.FIREFOX_DRIVER_EXECUTABLE_PATH)
+    if request.param == "edge":
+        web_driver = webdriver.Edge(executable_path = Config.EDGE_DRIVER_EXECUTABLE_PATH)
+    request.cls.driver = web_driver
     web_driver.implicitly_wait(5)
 
     return web_driver
+
+    """
+    yield
+    web_driver.close()
+    """
 

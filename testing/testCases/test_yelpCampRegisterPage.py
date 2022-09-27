@@ -1,7 +1,7 @@
 import pytest
 
-from Pages.yelpCampRegisterPage import test_yelpCampRegisterPage
-from TestCases.test_yelpCampBase import yelpCampBaseTest
+from Pages.yelpCampRegisterPage import yelpCampRegisterPage
+from test_yelpCampBase import yelpCampBaseTest
 from Pages.yelpCampRegisterPage import yelpCampRegisterPage
 
 class Test_yelpCampRegisterPage(yelpCampBaseTest):
