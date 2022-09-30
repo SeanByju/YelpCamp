@@ -20,7 +20,6 @@ class yelpCampLoginPage(yelpCampBasePage):
     LOGIN_URL = Config.BASE_URL+"/login"
 
 
-
     """ Page Actions """
 
     """use this funcntion to login in to the website"""
