@@ -4,26 +4,33 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from Config.config import Config
+import time
 
-"""
-@pytest.fixture(params=["chrome","firefox","edge"],scope="class")
-def init_driver(request):
-    if request == "chrome":
-        web_driver = webdriver.Chrome(Config.CHROME_DRIVER_EXECUTABLE_PATH)
-    if request == "firefox":
-        web_driver = webdriver.Firefox(Config.FIREFOX_DRIVER_EXECUTABLE_PATH)
-    if request == "edge":
-        web_driver = webdriver.Edge(Config.EDGE_DRIVER_EXECUTABLE_PATH)
-    
-    request.cls.driver = web_driver
-    
-    web_driver.implicitly_wait(5)
 
-    return web_driver
-    
-    yield
-    web_driver.close()
-"""
+@pytest.fixture
+def init_driver(request, getBrowser):
+    if getBrowser == "chrome":
+        _driver = webdriver.Chrome(Config.CHROME_DRIVER_EXECUTABLE_PATH)
+        # pass
+    if getBrowser == "firefox":
+        # web_driver = webdriver.Firefox(Config.FIREFOX_DRIVER_EXECUTABLE_PATH)
+        pass
+    if getBrowser == "edge":
+        #_driver = webdriver.Edge(Config.EDGE_DRIVER_EXECUTABLE_PATH)
+        pass
+
+    _driver.get("https://morning-savannah-46253.herokuapp.com/")
+
+    _driver.implicitly_wait(30)
+
+    request.cls.driver = _driver
+  
+    yield request.cls.driver
+
+    time.sleep(2)
+
+    request.cls.driver.quit()
+
 
 """
 @pytest.fixture(params=["chrome","firefox","edge"],scope="class")
@@ -49,13 +56,4 @@ def init_driver(request="chrome"):
     web_driver.close()
 """
 
-@pytest.fixture(scope="class")
-def init_driver(request):
-    driver = webdriver.Chrome(Config.CHROME_DRIVER_EXECUTABLE_PATH)
-    
-
-
-@pytest.fixture(name="init_driver")
-def init_driver_indirect():
-    return init_driver()
 
