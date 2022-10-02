@@ -1,3 +1,4 @@
+from logging import config
 import pytest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
@@ -6,22 +7,29 @@ from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from Config.config import Config
 import time
 
+subpage = "login"
+getBrowser = "chrome"
 
-@pytest.fixture
-def init_driver(request, getBrowser):
+@pytest.fixture(scope="class")
+def init_driver(request):
+    
+    """
     if getBrowser == "chrome":
-        _driver = webdriver.Chrome(Config.CHROME_DRIVER_EXECUTABLE_PATH)
+    """
+    _driver = webdriver.Chrome(Config.CHROME_DRIVER_EXECUTABLE_PATH)
         # pass
+    """
     if getBrowser == "firefox":
         # web_driver = webdriver.Firefox(Config.FIREFOX_DRIVER_EXECUTABLE_PATH)
         pass
     if getBrowser == "edge":
         #_driver = webdriver.Edge(Config.EDGE_DRIVER_EXECUTABLE_PATH)
         pass
+    """
 
-    _driver.get("https://morning-savannah-46253.herokuapp.com/")
+    _driver.get("https://morning-savannah-46253.herokuapp.com/"+subpage)
 
-    _driver.implicitly_wait(30)
+    _driver.implicitly_wait(60)
 
     request.cls.driver = _driver
   

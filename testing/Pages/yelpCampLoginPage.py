@@ -13,6 +13,9 @@ from Pages.yelpCampBasePage import yelpCampBasePage
 
 class yelpCampLoginPage(yelpCampBasePage):
 
+    def __init__(self, driver):
+        super().__init__(driver)
+
     """ By locators """
     USERNAME = (By.ID, "username")
     PASSWORD = (By.ID, "password")
