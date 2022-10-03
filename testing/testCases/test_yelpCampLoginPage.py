@@ -26,4 +26,7 @@ Example run in Windows Terminal
 
 python -m pytest TestCases/test_yelpCampLoginPage.py
 
+"include html report"
+python -m pytest TestCases/test_yelpCampLoginPage.py -v --html=./Reports/yelpCampTestReport.html
+
 """

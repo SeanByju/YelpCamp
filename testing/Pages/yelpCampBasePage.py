@@ -17,17 +17,17 @@ class yelpCampBasePage:
 
 
     def do_click(self, by_locator):
-        WebDriverWait(self.driver,5).until(EC.visibility_of_element_located(by_locator)).click()
+        WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)).click()
     
     def do_send_keys(self, by_locator, text):
-        WebDriverWait(self.driver,5).until(EC.visibility_of_element_located(by_locator)).send_keys(text)
+        WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)).send_keys(text)
 
     def get_element_text(self, by_loactor):
-        element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(by_loactor))
+        element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_loactor))
         return element.text
 
     def is_element_enabled(self, by_locator):
-        element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(by_locator))
+        element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator))
         return bool(element)
 
 
