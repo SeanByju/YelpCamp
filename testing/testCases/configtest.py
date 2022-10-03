@@ -6,6 +6,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from Config.config import Config
 import time
+from selenium.webdriver.chrome.service import Service
 
 subpage = "login"
 getBrowser = "chrome"
@@ -16,8 +17,9 @@ def init_driver(request):
     """
     if getBrowser == "chrome":
     """
-    _driver = webdriver.Chrome(Config.CHROME_DRIVER_EXECUTABLE_PATH)
+    _driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         # pass
+        # Config.CHROME_DRIVER_EXECUTABLE_PATH
     """
     if getBrowser == "firefox":
         # web_driver = webdriver.Firefox(Config.FIREFOX_DRIVER_EXECUTABLE_PATH)

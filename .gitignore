@@ -2,6 +2,7 @@ node_modules
 testing/config.py
 testing/**/__pycache__
 testing/.pytest_cache
+testing/Reports
 .env
 .DS_Store
  public/.DS_Store
