@@ -41,29 +41,3 @@ def init_driver(request):
 
     request.cls.driver.quit()
 
-
-"""
-@pytest.fixture(params=["chrome","firefox","edge"],scope="class")
-"""
-
-"""
-@pytest.fixture(params=["chrome"],scope="class")
-def init_driver(request="chrome"):
-    if request.param == "chrome":
-        web_driver = webdriver.Chrome(executable_path = Config.CHROME_DRIVER_EXECUTABLE_PATH)
-    
-    if request.param == "firefox":
-        web_driver = webdriver.Firefox(executable_path = Config.FIREFOX_DRIVER_EXECUTABLE_PATH)
-    if request.param == "edge":
-        web_driver = webdriver.Edge(executable_path = Config.EDGE_DRIVER_EXECUTABLE_PATH)
-    
-    request.cls.driver = web_driver
-    
-    web_driver.implicitly_wait(10)
-    
-    yield
-    
-    web_driver.close()
-"""
-
-
