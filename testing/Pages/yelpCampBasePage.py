@@ -16,6 +16,9 @@ class yelpCampBasePage:
         self.driver = driver
 
 
+
+    """ Base Page Actions"""
+
     def do_click(self, by_locator):
         WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)).click()
     
@@ -31,8 +34,7 @@ class yelpCampBasePage:
         return bool(element)
 
 
-
-
+    """ see if base page elements are enabled """
     def get_home_nav_button(self):
 
         self.is_element_enabled((By.XPATH, '//nav//a[text()="Home"]'))
