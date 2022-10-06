@@ -37,20 +37,31 @@ class yelpCampBasePage:
     """ see if base page elements are enabled """
     def get_home_nav_button(self):
 
-        self.is_element_enabled((By.XPATH, '//nav//a[text()="Home"]'))
+        return self.is_element_enabled((By.XPATH, '//nav//a[text()="Home"]'))
 
-    def get_campgrounds_nav_button(self):
+    def is_campgrounds_nav_button(self):
 
-        self.is_element_enabled(By.XPATH,'//nav//a[text()="Campgrounds"]')
+        return self.is_element_enabled((By.XPATH,'//nav//a[text()="Campgrounds"]'))
 
     def get_login_nav_button(self):
 
-        self.is_element_enabled(By.XPATH,'//nav//a[text()="Login"]')
+        return self.is_element_enabled((By.XPATH,'/nav/a[text()="Login"]'))
+        
 
     def get_register_button(self):
 
-        self.is_element_enabled(By.XPATH,'//nav//a[text()="Register"]')
+        return self.is_element_enabled((By.XPATH,'//nav//a[text()="Register"]'))
     
+
+    def is_login_nav_button_enabled(self):
+
+        element =  self.is_element_enabled((By.LINK_TEXT,"Login"))
+        return bool(element)
+
+    def is_logout_nav_button_enabled(self):
+
+        element =  self.is_element_enabled((By.LINK_TEXT,"Logout"))
+        return bool(element)
     
 """
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)

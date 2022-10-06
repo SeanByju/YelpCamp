@@ -10,10 +10,13 @@ from Config.config import Config
 @pytest.mark.usefixtures("init_driver")
 class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
 
-    def test_welcome_back(self):
+    def test_login_and_verify(self):
         self.yelpCampLoginPage = yelpCampLoginPage(self.driver)
         yelpCampCampgroundsPage = self.yelpCampLoginPage.do_login(Config.USERNAME, Config.PASSWORD)
-        yelpCampCampgroundsPage.is_mapbox_canvas_visible()
+        flag1 = yelpCampCampgroundsPage.is_mapbox_canvas_visible()
+        flag2 = yelpCampCampgroundsPage.is_logout_nav_button_enabled()
+        self.assertEqual(flag1,flag2)
+        
 
     """
     def test_logout(self):
