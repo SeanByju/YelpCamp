@@ -16,14 +16,13 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
         flag1 = yelpCampCampgroundsPage.is_mapbox_canvas_visible()
         flag2 = yelpCampCampgroundsPage.is_logout_nav_button_enabled()
         self.assertEqual(flag1,flag2)
-        
 
-    """
+    
     def test_logout(self):
-            driver = self.driver
-            self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(driver)
-            self.yelpCampCampgroundsPage.do_logout()
-            flag = self.yelpCampCampgroundsPage.is_good_bye_div_visible()
-            assert flag
-    """
+        driver = self.driver
+        self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(driver)
+        self.yelpCampCampgroundsPage.do_logout()
+        flag = self.yelpCampCampgroundsPage.is_good_bye_div_visible()
+        assert flag
+    
 
