@@ -18,7 +18,7 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
         self.assertEqual(flag1,flag2)
 
     
-    def test_logout(self):
+    def test_logout_and_verify(self):
         driver = self.driver
         self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(driver)
         self.yelpCampCampgroundsPage.do_logout()
