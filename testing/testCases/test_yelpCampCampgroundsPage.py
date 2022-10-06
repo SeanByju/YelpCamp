@@ -13,8 +13,7 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
     def test_welcome_back(self):
         self.yelpCampLoginPage = yelpCampLoginPage(self.driver)
         yelpCampCampgroundsPage = self.yelpCampLoginPage.do_login(Config.USERNAME, Config.PASSWORD)
-        print(self.driver.current_url)
-        yelpCampCampgroundsPage.is_welcome_back_alert_visible()
+        yelpCampCampgroundsPage.is_mapbox_canvas_visible()
 
     """
     def test_logout(self):

@@ -6,7 +6,7 @@ class Config:
     EDGE_DRIVER_EXECUTABLE_PATH = "Drivers/msedgedriver.exe"
 
     BASE_URL = "https://morning-savannah-46253.herokuapp.com"
-    USERNAME = "test"
-    PASSWORD = "test"
+    USERNAME = "testmatthewanderson"
+    PASSWORD = "testmatthewanderson"
 
     

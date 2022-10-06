@@ -16,7 +16,6 @@ class yelpCampLoginPage(yelpCampBasePage):
     """inherit driver initializer"""
     def __init__(self, driver):
         super().__init__(driver)
-        self.driver.get()
 
     """ By locators """
     USERNAME = (By.ID, "username")
