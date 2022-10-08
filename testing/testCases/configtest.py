@@ -7,7 +7,8 @@ from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from Config.config import Config
 import time
 from selenium.webdriver.chrome.service import Service
-
+from datetime import datetime as dt
+global_
 
 "adjust the subpage to determine the url you are going to start your automation on"
 subpage = "login"
@@ -36,6 +37,10 @@ def init_driver(request):
     _driver.get("https://morning-savannah-46253.herokuapp.com/"+subpage)
 
     _driver.implicitly_wait(60)
+
+    time_now = dt.now().strftime(global_strftime)
+    
+    _driver.save_screenshot("init_driver_"+time_now+".png")
 
     request.cls.driver = _driver
   

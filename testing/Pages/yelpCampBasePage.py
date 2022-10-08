@@ -1,9 +1,13 @@
-from turtle import clear
+""""""
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-import datetime as dt
+from datetime import datetime as dt
+import time
+
+from Config.config import Config
+
 
 """This is the parent of all pages"""
 """It contains all of the generic methods and utiilties for all pages"""
@@ -14,6 +18,8 @@ class yelpCampBasePage:
     def __init__(self,driver):
 
         self.driver = driver
+        time_now = dt.now().strftime(Config.global_strftime)
+        driver.save_screenshot("init_driver_"+time_now+".png")
 
     """ Base Page Actions"""
 
@@ -22,12 +28,27 @@ class yelpCampBasePage:
     
 
     def do_click_and_verify(self, by_locator, element_name):
-        self.driver.get_screenshot_as_file(element_name+".png")
+        time_now = dt.now().strftime(Config.global_strftime)
+        self.driver.get_screenshot_as_file(element_name+"_before_"+time_now+".png")
         self.do_click(by_locator)
+        time.sleep(10)
+        time_now = dt.now().strftime(Config.global_strftime)
+        self.driver.get_screenshot_as_file(element_name+"_after_"+time_now+".png")
+        
 
 
     def do_send_keys(self, by_locator, text):
         WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)).send_keys(text)
+
+
+    def do_send_keys_and_verify(self, by_locator, element_name):
+        time_now = dt.now().strftime(Config.global_strftime)
+        self.driver.get_screenshot_as_file(element_name+"_before_"+time_now+".png")
+        self.do_send_keys(by_locator)
+        time.sleep(10)
+        time_now = dt.now().strftime(Config.global_strftime)
+        self.driver.get_screenshot_as_file(element_name+"_after_"+time_now+".png")
+        
 
     def get_element_text(self, by_loactor):
         element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_loactor))
@@ -67,12 +88,3 @@ class yelpCampBasePage:
         element =  self.is_element_enabled((By.LINK_TEXT,"Logout"))
         return bool(element)
     
-"""
-@pytest.hookimpl(tryfirst=True, hookwrapper=True)
-def pytest_runtest_makereport(item, call):
-    outcome = yield
-    rep = outcome.get_result()
-    if rep.when == 'call' and rep.failed:
-        now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-        driver.save_screenshot(f".\\Screenshots\\fail_{now}.png")
-"""    
