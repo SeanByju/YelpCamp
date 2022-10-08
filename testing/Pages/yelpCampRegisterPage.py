@@ -13,7 +13,6 @@ class yelpCampRegisterPage(yelpCampBasePage):
     USERNAME = (By.ID, "username")
     PASSWORD = (By.ID, "password")
     EMAIL = (By.ID, "email")
-    REGISTER_BUTTON = (By.XPATH, '//button[text()="Register"]')
 
     """ constructor of the page class """
     def __init__(self, driver):

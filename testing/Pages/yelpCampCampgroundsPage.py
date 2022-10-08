@@ -17,10 +17,10 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
 
 
     """ By locators """
-    LOGOUT_BUTTON = ((By.XPATH, '//a [contains(text(),\"Logout")]'),"logout_button")
     WELCOME_BACK_ALERT_DIV = ((By.XPATH, '//div[contains(text(),\"Welcome back!")]'),"welcome_back_alert_div")
     GOODBYE_ALERT_DIV = ((By.XPATH, '//div[contains(text(),\"GOOD BYE!!")]'),"goodbye_alert_div")
     MAP_CANVAS = ((By.CLASS_NAME, 'mapboxgl-canvas'),"map_canvas")
+
 
             
     """ verify that you logged in by seeing whether the welcome back divider is visible"""
@@ -37,12 +37,18 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
     def is_good_bye_div_visible(self):
 
         return self.is_element_enabled(self.GOODBYE_ALERT_DIV[0])
-    
-    
-    """ use this function to logout of your yelp camp account"""
-    def do_logout(self):
 
-        self.do_click_and_verify(self.LOGOUT_BUTTON[0], self.LOGOUT_BUTTON[1])
+    """ logout and veirfy that you logged out successfully"""
+    def do_logout_and_verify(self):
+        self.do_logout()
         self.is_element_enabled(self.GOODBYE_ALERT_DIV[0])
+
+    def write_review(self, stars, review):
+        pass
+        
+
+    
+    
+    
 
     

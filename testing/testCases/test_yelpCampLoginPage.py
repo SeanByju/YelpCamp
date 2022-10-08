@@ -19,8 +19,7 @@ class Test_yelpCampLoginPage(yelpCampBaseTest):
     def test_login(self):
         driver = self.driver
         self.yelpCampLoginPage = yelpCampLoginPage(driver)
-        yelpCampCampgroundsPage = self.yelpCampLoginPage.do_login(Config.USERNAME, Config.PASSWORD)
-        
+        yelpCampCampgroundsPage = self.yelpCampLoginPage.do_login(Config.USERNAME, Config.PASSWORD) 
         flag = yelpCampCampgroundsPage.is_welcome_back_alert_visible()
         assert flag
 
