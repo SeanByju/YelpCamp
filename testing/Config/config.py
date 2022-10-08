@@ -9,4 +9,8 @@ class Config:
     USERNAME = "testmatthewanderson"
     PASSWORD = "testmatthewanderson"
 
+    global_strftime = "%d-%m-%Y_%H-%M-%S"
+    screenshot_path = "Reports/screenshots/"
+
+
     

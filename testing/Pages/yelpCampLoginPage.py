@@ -18,9 +18,9 @@ class yelpCampLoginPage(yelpCampBasePage):
         super().__init__(driver)
 
     """ By locators """
-    USERNAME = (By.ID, "username")
-    PASSWORD = (By.ID, "password")
-    LOGIN_BUTTON = (By.XPATH, '//button[text()="Login"]')
+    USERNAME = ((By.ID, "username"), "username_input")
+    PASSWORD = ((By.ID, "password"), "password_input")
+    LOGIN_BUTTON = ((By.XPATH, '//button[text()="Login"]'), "login_button")
     LOGIN_URL = Config.BASE_URL+"/login"
     
 
@@ -29,14 +29,14 @@ class yelpCampLoginPage(yelpCampBasePage):
 
     """use this function to login in to the website"""
     def do_login(self, username, password):
-        self.do_send_keys(self.USERNAME, username)
-        self.do_send_keys(self.PASSWORD, password)
-        self.do_click(self.LOGIN_BUTTON)
+        self.do_send_keys_and_verify(self.USERNAME[0],self.USERNAME[1], username)
+        self.do_send_keys_and_verify(self.PASSWORD[0],self.PASSWORD[1], password)
+        self.do_click_and_verify(self.LOGIN_BUTTON[0], self.LOGIN_BUTTON[1])
         return yelpCampCampgroundsPage(self.driver)
 
     """check if the login button is visible"""
     def is_login_button_visible(self):
 
-        return self.is_element_enabled(self.LOGIN_BUTTON)
+        return self.is_element_enabled(self.LOGIN_BUTTON[0])
 
     

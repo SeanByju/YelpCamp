@@ -1,10 +1,12 @@
 """"""
+
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from datetime import datetime as dt
 import time
+
 
 from Config.config import Config
 
@@ -18,8 +20,11 @@ class yelpCampBasePage:
     def __init__(self,driver):
 
         self.driver = driver
+        """
         time_now = dt.now().strftime(Config.global_strftime)
-        driver.save_screenshot("init_driver_"+time_now+".png")
+        time.sleep(10)
+        driver.get_screenshot_as_file("init_driver_"+time_now+".png")
+        """
 
     """ Base Page Actions"""
 
@@ -29,25 +34,28 @@ class yelpCampBasePage:
 
     def do_click_and_verify(self, by_locator, element_name):
         time_now = dt.now().strftime(Config.global_strftime)
-        self.driver.get_screenshot_as_file(element_name+"_before_"+time_now+".png")
+        before_screenshot = self.driver.save_screenshot(Config.screenshot_path+element_name+"_before_"+time_now+".png")
+        print(before_screenshot)
         self.do_click(by_locator)
         time.sleep(10)
         time_now = dt.now().strftime(Config.global_strftime)
-        self.driver.get_screenshot_as_file(element_name+"_after_"+time_now+".png")
+        after_screenshot = self.driver.save_screenshot(Config.screenshot_path+element_name+"_after_"+time_now+".png")
+        print(after_screenshot)
         
-
 
     def do_send_keys(self, by_locator, text):
         WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)).send_keys(text)
 
 
-    def do_send_keys_and_verify(self, by_locator, element_name):
+    def do_send_keys_and_verify(self, by_locator, element_name,  text):
         time_now = dt.now().strftime(Config.global_strftime)
-        self.driver.get_screenshot_as_file(element_name+"_before_"+time_now+".png")
-        self.do_send_keys(by_locator)
+        before_screenshot =self.driver.save_screenshot(Config.screenshot_path+element_name+"_before_"+time_now+".png")
+        print(before_screenshot)
+        self.do_send_keys(by_locator, text)
         time.sleep(10)
         time_now = dt.now().strftime(Config.global_strftime)
-        self.driver.get_screenshot_as_file(element_name+"_after_"+time_now+".png")
+        after_screenshot = self.driver.save_screenshot(Config.screenshot_path+element_name+"_after_"+time_now+".png")
+        print(after_screenshot)
         
 
     def get_element_text(self, by_loactor):
