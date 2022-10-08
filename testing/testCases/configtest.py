@@ -8,11 +8,15 @@ from Config.config import Config
 import time
 from selenium.webdriver.chrome.service import Service
 
+
+"adjust the subpage to determine the url you are going to start your automation on"
 subpage = "login"
 getBrowser = "chrome"
 
 @pytest.fixture(scope="class")
 def init_driver(request):
+
+    print("-----------------------------setup-----------------------------")
     
     """
     if getBrowser == "chrome":
@@ -38,6 +42,8 @@ def init_driver(request):
     yield request.cls.driver
 
     time.sleep(2)
+
+    print("-----------------------------teardown-----------------------------")
 
     request.cls.driver.quit()
 

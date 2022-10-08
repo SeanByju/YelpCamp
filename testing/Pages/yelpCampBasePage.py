@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-
+import datetime as dt
 
 """This is the parent of all pages"""
 """It contains all of the generic methods and utiilties for all pages"""
@@ -15,13 +15,17 @@ class yelpCampBasePage:
 
         self.driver = driver
 
-
-
     """ Base Page Actions"""
 
     def do_click(self, by_locator):
         WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)).click()
     
+
+    def do_click_and_verify(self, by_locator, element_name):
+        self.driver.get_screenshot_as_file(element_name+".png")
+        self.do_click(by_locator)
+
+
     def do_send_keys(self, by_locator, text):
         WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)).send_keys(text)
 
