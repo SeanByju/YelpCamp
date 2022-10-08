@@ -23,6 +23,7 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
     # must be loggeed in to add a campground
     def test_add_campground(self):
         self.yelpCampCampgroundsPage = yelpCampLoginPage(self.driver)
+
         
     
     def test_logout_and_verify(self):
