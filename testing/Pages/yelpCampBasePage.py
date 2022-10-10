@@ -127,10 +127,15 @@ class yelpCampBasePage:
         self.do_click_and_verify(self.LOGIN_NAV_BUTTON[0], self.LOGIN_NAV_BUTTON[1])
 
 
-    """ use this function to logout of your yelp camp account"""
+    # use this function to logout of your yelp camp account
     def do_logout(self):
 
         self.do_click_and_verify(self.LOGOUT_BUTTON[0], self.LOGOUT_BUTTON[1])
+
+    # return the 
+    def click_new_campgrounds_atag(self):
+
+        return self.do_click_and_verify(self.NEW_CAMPGROUNDS_BUTTON[0], self.NEW_CAMPGROUNDS_BUTTON[1])
 
     
 
