@@ -19,11 +19,11 @@ class Config:
     CAMPGROUND_LOCATION = "San Francisco, CA"
     UPLOAD_IMAGE = ""
     CAMPGROUND_PRICE = "100"
-    CAMPGROUND_DESCRIPTION = " test description"
+    CAMPGROUND_DESCRIPTION = "test description"
 
     """ campgrounds review """
     REVIEW_DESCRIPTION = "test"
-    REVIEW_STAR_RATING = 5
+    REVIEW_STAR_RATING = "5"
 
 
     
