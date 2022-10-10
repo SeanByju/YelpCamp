@@ -4,6 +4,7 @@ testing/**/__pycache__
 testing/.pytest_cache
 testing/Reports
 testing/archive
+pytest_html_report.html
 .env
 .DS_Store
  public/.DS_Store
