@@ -3,6 +3,7 @@
 import pytest
 from Pages.yelpCampLoginPage import yelpCampLoginPage
 from Pages.yelpCampCampgroundsPage import yelpCampCampgroundsPage
+from Pages.yelpCampNewCampgroundPage import yelpCampNewCampgroundPage
 from TestCases.test_yelpCampBase import yelpCampBaseTest
 # note: even though init driver is called only as a fixture, it still needs to be imported
 from configtest import init_driver
@@ -12,6 +13,7 @@ from Config.config import Config
 class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
 
     def test_login_and_verify(self):
+        print("initiate login and verify test")
         self.yelpCampLoginPage = yelpCampLoginPage(self.driver)
         self.yelpCampCampgroundsPage = self.yelpCampLoginPage.do_login(Config.USERNAME, Config.PASSWORD)
         """ verify that login was successful by checking if the mapbox canvs and logout buttons are visible"""
@@ -20,14 +22,17 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
         flag = self.yelpCampCampgroundsPage.is_welcome_back_alert_visible()
         assert flag
 
+    
     # must be loggeed in to add a campground
     def test_add_campground(self):
-        self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(self.driver)
-        self.yelpCampNewCampgroundsPage = self.yelpCampCampgroundsPage.click_new_campgrounds_atag()
-        
+        print("initiate add campground test")
+        self.yelpCampNewCampgroundPage = yelpCampNewCampgroundPage(self.driver)
+        self.yelpCampNewCampgroundPage = self.yelpCampNewCampgroundPage.click_new_campgrounds_atag()
+        self.yelpCampNewCampgroundPage.add_campground()
+
     
     def test_logout_and_verify(self):
-
+        print("initiate logout and verify test")
         self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(self.driver)
         self.yelpCampCampgroundsPage.do_logout()
         flag = self.yelpCampCampgroundsPage.is_good_bye_div_visible()

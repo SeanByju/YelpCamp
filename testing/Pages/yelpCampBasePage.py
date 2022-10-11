@@ -27,7 +27,7 @@ class yelpCampBasePage:
     """ Base Web elements"""
     HOME_NAV_BUTTON = ((By.XPATH, '//nav//a[text()="Home"]'), "home_nav_button")
     CAMPGROUNDS_NAV_BUTTON = ((By.XPATH,'//nav//a[text()="Campgrounds"]'), "campgrounds_nav_button")
-    NEW_CAMPGROUNDS_BUTTON = ((By.XPATH, '//nav//a[text()='), "new_campground_nav_button")
+    NEW_CAMPGROUNDS_BUTTON = ((By.XPATH, '//nav//a[text()="New Campground"]'), "new_campground_nav_button")
     LOGIN_NAV_BUTTON = ((By.XPATH,'/nav/a[text()="Login"]'), "login_nav_button")
     LOGOUT_BUTTON = ((By.XPATH, '//a[contains(text(),\"Logout")]'),"logout_button")
     REGISTER_BUTTON = ((By.XPATH, '//button[text()="Register"]'))
@@ -132,10 +132,6 @@ class yelpCampBasePage:
 
         self.do_click_and_verify(self.LOGOUT_BUTTON[0], self.LOGOUT_BUTTON[1])
 
-    # return the 
-    def click_new_campgrounds_atag(self):
-
-        return self.do_click_and_verify(self.NEW_CAMPGROUNDS_BUTTON[0], self.NEW_CAMPGROUNDS_BUTTON[1])
-
+    
     
 

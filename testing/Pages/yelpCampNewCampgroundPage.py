@@ -9,7 +9,7 @@ import time
 
 from Config.config import Config
 from Pages.yelpCampBasePage import yelpCampBasePage
-from testing.Pages.yelpCampCampgroundsPage import yelpCampCampgroundsPage
+from Pages.yelpCampCampgroundsPage import yelpCampCampgroundsPage
 
 class yelpCampNewCampgroundPage(yelpCampBasePage):
 
@@ -28,6 +28,7 @@ class yelpCampNewCampgroundPage(yelpCampBasePage):
     """ Page Actions"""
 
     """ add campground to account"""
+    """ adjust add campground to include inputs for campground information """
     def add_campground(self):
         
         self.do_send_keys_and_verify(self.CAMPGROUND_NAME_INPUT[0],self.CAMPGROUND_NAME_INPUT[1], Config.CAMPGROUND_NAME)
@@ -38,3 +39,9 @@ class yelpCampNewCampgroundPage(yelpCampBasePage):
         self.do_click_and_verify(self.SUBMIT_NEW_CAMPGROUND_BUTTON[0], self.SUBMIT_NEW_CAMPGROUND_BUTTON[1])
         return yelpCampCampgroundsPage(self.driver)
 
+        # return the new campground page
+    def click_new_campgrounds_atag(self):
+
+        self.do_click_and_verify(self.NEW_CAMPGROUNDS_BUTTON[0], self.NEW_CAMPGROUNDS_BUTTON[1])
+
+        return yelpCampNewCampgroundPage(self.driver)
