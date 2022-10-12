@@ -19,10 +19,10 @@ class yelpCampNewCampgroundPage(yelpCampBasePage):
     """ By locators """
     CAMPGROUND_NAME_INPUT = ((By.ID, "title"), "campground_name_input")
     CAMPGROUND_LOCATION_INPUT = ((By.ID,"location"),"campground_location_input")
-    CHOOSE_FILES_BUTTON = ((By.ID, "image"),"choose_files_button")
+    CHOOSE_FILES_BUTTON = ((By.ID,"image"),"campground_file_input")
     CAMPGROUND_PRICE = ((By.ID, "price"),"campground_price")
     CAMPGROUND_DESCRIPTION = ((By.ID, "description"), "campground_description")
-    SUBMIT_NEW_CAMPGROUND_BUTTON = ((By.XPATH, '//button{text()="Submit"]'),"submit_new_campground_button")
+    SUBMIT_NEW_CAMPGROUND_BUTTON = ((By.XPATH, '//button[contains(text(),"Submit")]'),"submit_new_campground_button")
     CANCEL_ATAG = ((By.XPATH,'//a[text()="Cancel"]'),"cancel_new_campground")
 
     """ Page Actions"""
@@ -31,17 +31,54 @@ class yelpCampNewCampgroundPage(yelpCampBasePage):
     """ adjust add campground to include inputs for campground information """
     def add_campground(self):
         
+        print("campground name input starts")
         self.do_send_keys_and_verify(self.CAMPGROUND_NAME_INPUT[0],self.CAMPGROUND_NAME_INPUT[1], Config.CAMPGROUND_NAME)
+        
+        print("campground location input starts")
         self.do_send_keys_and_verify(self.CAMPGROUND_LOCATION_INPUT[0], self.CAMPGROUND_LOCATION_INPUT[1], Config.CAMPGROUND_LOCATION)
-        self.do_send_keys_and_verify(self.CHOOSE_FILES_BUTTON[0], self.CHOOSE_FILES_BUTTON[1],Config.UPLOAD_IMAGE)
-        self.do_send_keys_and_verify(self.CAMPGROUND_PRICE[0], self.CAMPGROUND_PRICE[1], Config.CAMPGROUND_PRICE)
-        self.do_send_keys_and_verify(self.CAMPGROUND_DESCRIPTION[0], self.CAMPGROUND_DESCRIPTION[1], Config.CAMPGROUND_DESCRIPTION)
-        self.do_click_and_verify(self.SUBMIT_NEW_CAMPGROUND_BUTTON[0], self.SUBMIT_NEW_CAMPGROUND_BUTTON[1])
-        return yelpCampCampgroundsPage(self.driver)
+        
+        print("choose file input starts")
 
-        # return the new campground page
+        
+        print("initial click passed")
+
+
+        self.do_send_keys_and_verify(self.CHOOSE_FILES_BUTTON[0], self.CHOOSE_FILES_BUTTON[1], Config.UPLOAD_IMAGE)
+        
+        print("campground price input starts")
+        self.do_send_keys_and_verify(self.CAMPGROUND_PRICE[0], self.CAMPGROUND_PRICE[1], Config.CAMPGROUND_PRICE)
+        
+        print("campground description input starts")
+        self.do_send_keys_and_verify(self.CAMPGROUND_DESCRIPTION[0], self.CAMPGROUND_DESCRIPTION[1], Config.CAMPGROUND_DESCRIPTION)
+        
+        print("click submit button")
+        self.do_click_and_verify(self.SUBMIT_NEW_CAMPGROUND_BUTTON[0], self.SUBMIT_NEW_CAMPGROUND_BUTTON[1])
+        
+        """
+        "test finding the submit button"
+        self.driver.find_element(By.XPATH,'').click()
+        """
+
+
+        return yelpCampCampgroundsPage(self.driver)
+        
+
+    # return the new campground page
     def click_new_campgrounds_atag(self):
 
         self.do_click_and_verify(self.NEW_CAMPGROUNDS_BUTTON[0], self.NEW_CAMPGROUNDS_BUTTON[1])
 
         return yelpCampNewCampgroundPage(self.driver)
+
+    def delete_campground(self):
+
+        self.do_click_and_verify()
+
+        """
+        input_tags = self.driver.find_elements(By.TAG_NAME,'input')
+        for web_element in input_tags:
+            print(web_element.get_attribute("id"))
+        
+        print("C:\\Users\\Owner\\Documents\\Programming\\YelpCamp\\testing\\Resources\Images\\redwood-forrest-1.jpg")
+        print(self.driver.find_element(By.ID,"image").send_keys())
+        """

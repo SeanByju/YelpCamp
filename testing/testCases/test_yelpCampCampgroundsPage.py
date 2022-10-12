@@ -9,10 +9,12 @@ from TestCases.test_yelpCampBase import yelpCampBaseTest
 from configtest import init_driver
 from Config.config import Config
 
+
+
 @pytest.mark.usefixtures("init_driver")
 class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
 
-    def test_login_and_verify(self):
+    def test_1_login_and_verify(self):
         print("initiate login and verify test")
         self.yelpCampLoginPage = yelpCampLoginPage(self.driver)
         self.yelpCampCampgroundsPage = self.yelpCampLoginPage.do_login(Config.USERNAME, Config.PASSWORD)
@@ -22,20 +24,27 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
         flag = self.yelpCampCampgroundsPage.is_welcome_back_alert_visible()
         assert flag
 
-    
+    """
     # must be loggeed in to add a campground
-    def test_add_campground(self):
+    def test_2_add_campground(self):
         print("initiate add campground test")
         self.yelpCampNewCampgroundPage = yelpCampNewCampgroundPage(self.driver)
         self.yelpCampNewCampgroundPage = self.yelpCampNewCampgroundPage.click_new_campgrounds_atag()
         self.yelpCampNewCampgroundPage.add_campground()
+    """
 
+    def test_write_review(self):
+        pass
+
+    def test_3_delete_campground(self):
+        pass
     
-    def test_logout_and_verify(self):
+    """
+    def test_4_logout_and_verify(self):
         print("initiate logout and verify test")
         self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(self.driver)
         self.yelpCampCampgroundsPage.do_logout()
         flag = self.yelpCampCampgroundsPage.is_good_bye_div_visible()
         assert flag
-    
+    """
 

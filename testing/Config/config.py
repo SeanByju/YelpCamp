@@ -17,7 +17,7 @@ class Config:
     """ new campground inputs """
     CAMPGROUND_NAME = "Redwoods Site"
     CAMPGROUND_LOCATION = "San Francisco, CA"
-    UPLOAD_IMAGE = ""
+    UPLOAD_IMAGE = "C:\\Users\\Owner\\Documents\\Programming\\YelpCamp\\testing\\Resources\Images\\redwood-forrest-1.jpg"
     CAMPGROUND_PRICE = "100"
     CAMPGROUND_DESCRIPTION = "test description"
 
