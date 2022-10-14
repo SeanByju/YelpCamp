@@ -29,6 +29,7 @@ class yelpCampNewCampgroundPage(yelpCampBasePage):
 
     """ add campground to account"""
     """ adjust add campground to include inputs for campground information """
+    
     def add_campground(self):
         
         print("campground name input starts")
@@ -73,6 +74,8 @@ class yelpCampNewCampgroundPage(yelpCampBasePage):
     def delete_campground(self):
 
         self.do_click_and_verify()
+
+
 
         """
         input_tags = self.driver.find_elements(By.TAG_NAME,'input')
