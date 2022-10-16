@@ -48,7 +48,9 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
 
 
             
-    """ verify that you logged in by seeing whether the welcome back divider is visible"""
+    """ verify that login was successful by checking if the mapbox canvs and logout buttons are visible"""
+    """ note: could use the welcome back alert as a verifier as well but it is only usable with accounts that have already been created"""
+    """ and you're logging back in. """
     def is_welcome_back_alert_visible(self):
 
         print("\n this is the page that you are looking at before looking for the welcome back alert div element")
