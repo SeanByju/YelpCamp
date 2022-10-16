@@ -13,7 +13,7 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
 
 
     """ By locators """
-    WELCOME_BACK_ALERT_DIV = ((By.XPATH, '//div[contains(text(),\"Welcome back!")]'),"welcome_back_alert_div")
+    WELCOME_BACK_ALERT_DIV = ((By.XPATH, '//div[contains(text(),"Welcome back!")]'),"welcome_back_alert_div")
     GOODBYE_ALERT_DIV = ((By.XPATH, '//div[contains(text(),"GOOD BYE!!")]'),"goodbye_alert_div")
     MAP_CANVAS = ((By.CLASS_NAME, 'mapboxgl-canvas'),"map_canvas")
     ONE_STAR_RATE_LABEL = ((By.XPATH,'//label[@for="first-rate1"]'),"one_star_rate_label")
@@ -27,8 +27,17 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
     EDIT_ATAG = ((By.XPATH,'//a[contains(text(),"Edit")]'), 'edit_campground_atag')
     DELETE_CAMPGROUND_BUTTON = ((By.XPATH,'//button[text()="Delete Campground"]'), 'delete_campground_button')
     VIEW_FIRST_CAMPGROUND_BUTTON = ((By.XPATH, '//a[contains(text(),"View My First Camp")]'), 'view_first_campground_button')
-    USERNAME_REVIEW_SEARCH = (By.XPATH, '//h6[contains(text(),"'+Config.USERNAME+'")]')
-    REVIEW_IS_NOT_DEFINED_TAG = ()
+    USERNAME_REVIEW_SEARCH = (By.XPATH, '//div[contains(text(),"'+Config.USERNAME+'")]')
+    REVIEW_IS_NOT_DEFINED_TAG = ((By.XPATH, '//h4[contains(text(),"Review is not defined")]'),"review_undefined_div")
+    DELETE_CAMPGROUND_SUCCESS_DIV = ((By.XPATH, '//div[contains(text(),"Successfully deleted campground!")]'),"review_undefined_div")
+    ADD_NEW_CAMPGROUND_SUCCESS_DIV = ((By.XPATH, '//div[contains(text(),"Successfully made a new campground!")]'),'add_new_campground_success_div')
+    CAMPGROUND_NAME_INPUT = ((By.ID, "title"), "campground_name_input")
+    CAMPGROUND_LOCATION_INPUT = ((By.ID,"location"),"campground_location_input")
+    CHOOSE_FILES_BUTTON = ((By.ID,"image"),"campground_file_input")
+    CAMPGROUND_PRICE = ((By.ID, "price"),"campground_price")
+    CAMPGROUND_DESCRIPTION = ((By.ID, "description"), "campground_description")
+    SUBMIT_NEW_CAMPGROUND_BUTTON = ((By.XPATH, '//button[contains(text(),"Submit")]'),"submit_new_campground_button")
+    CANCEL_ATAG = ((By.XPATH,'//a[text()="Cancel"]'),"cancel_new_campground")
 
     
     """
@@ -41,8 +50,12 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
             
     """ verify that you logged in by seeing whether the welcome back divider is visible"""
     def is_welcome_back_alert_visible(self):
+
+        print("\n this is the page that you are looking at before looking for the welcome back alert div element")
+
+        print("\n"+self.driver.find_element(By.XPATH,'//main').text+"\n")
         
-        return self.is_element_enabled(self.WELCOME_BACK_ALERT_DIV[0])
+        return self.is_element_visible(self.WELCOME_BACK_ALERT_DIV[0], self.WELCOME_BACK_ALERT_DIV[1])
 
 
 
@@ -50,7 +63,8 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
     """ verify that you logged in by seeing whether the map canvas is visible """
     def is_mapbox_canvas_visible(self):
 
-        return self.is_element_enabled(self.MAP_CANVAS[0])
+
+        return self.is_element_visible(self.MAP_CANVAS[0], self.MAP_CANVAS[1])
 
 
 
@@ -58,15 +72,28 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
     """ verify that you logged out by seeing whether the  good bye alert div is visible"""
     def is_good_bye_div_visible(self):
 
-        return self.is_element_enabled(self.GOODBYE_ALERT_DIV[0])
 
+        return self.is_element_visible(self.GOODBYE_ALERT_DIV[0], self.GOODBYE_ALERT_DIV[1])
+
+
+    def is_delete_campground_success_div_visible(self):
+
+
+        return self.is_element_visible(self.DELETE_CAMPGROUND_SUCCESS_DIV[0], self.DELETE_CAMPGROUND_SUCCESS_DIV[1])
+
+
+    # this is only visible at this time because the site is currently not deleting reviews when it is deleting a website. reviews need ot be deleted as well
+    def is_review_not_defined_visible(self):
+
+        return self.is_element_visible(self.REVIEW_IS_NOT_DEFINED_TAG[0], self.REVIEW_IS_NOT_DEFINED_TAG[1])
 
 
 
     """ logout and veirfy that you logged out successfully"""
     def do_logout_and_verify(self):
+
         self.do_logout()
-        self.is_element_enabled(self.GOODBYE_ALERT_DIV[0])
+        self.is_element_visible(self.GOODBYE_ALERT_DIV[0], self.GOODBYE_ALERT_DIV[1])
 
 
 
@@ -127,15 +154,70 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
     def delete_campground(self, campground_name):
         
         "locate the button where you can view that campsite's subpage"
-        self.do_click_and_verify((By.XPATH, '//a[contains(text(),"'+campground_name+'")]'), "view_campground")
+        self.do_click_and_verify((By.XPATH, '//a[contains(text(),"View '+campground_name+'")]'), "view_campground")
 
         "click the edit button"
         self.do_click_and_verify(self.EDIT_ATAG[0], self.EDIT_ATAG[1])
 
+
+        print("\n this is the page text that you can see before you are supposed to hit the delete campground button \n")
+
+        print("\n"+self.driver.current_url+"\n")
+
+        print("\n"+self.driver.find_element(By.XPATH,"//main").text+"\n")
+
+
         "click the delete button"
         self.do_click_and_verify(self.DELETE_CAMPGROUND_BUTTON[0], self.DELETE_CAMPGROUND_BUTTON[1])
 
-    
 
+
+
+    
+    """ verify that the campground was added by checking the add new campground success div element is now visible """
+    def verify_add_campground(self):
+
+
+        print("\n print the page that the driver is looking at before checking if the add new add campground div is visible \n")
+
+        print("\n"+ self.driver.find_element(By.XPATH, "//main").text +"\n")
+
+        return self.is_element_visible(self.ADD_NEW_CAMPGROUND_SUCCESS_DIV[0], self.ADD_NEW_CAMPGROUND_SUCCESS_DIV[1])
+
+
+
+
+    """ verify that the welcome back alert div is visible """
+    def is_welcome_back_alert_div_visible(self):
+
+        return self.is_element_visible(self.WELCOME_BACK_ALERT_DIV[0], self.WELCOME_BACK_ALERT_DIV[1])
+
+
+    """ add campground to account"""
+    """ adjust add campground to include inputs for campground information """
+    
+    def add_campground(self, name, location, image, price, description):
+        
+        
+        self.do_send_keys_and_verify(self.CAMPGROUND_NAME_INPUT[0],self.CAMPGROUND_NAME_INPUT[1], name)
+        
+        
+        self.do_send_keys_and_verify(self.CAMPGROUND_LOCATION_INPUT[0], self.CAMPGROUND_LOCATION_INPUT[1], location)
+
+
+        self.do_send_keys_and_verify(self.CHOOSE_FILES_BUTTON[0], self.CHOOSE_FILES_BUTTON[1], image)
+        
+        
+        self.do_send_keys_and_verify(self.CAMPGROUND_PRICE[0], self.CAMPGROUND_PRICE[1], price)
+        
+        
+        self.do_send_keys_and_verify(self.CAMPGROUND_DESCRIPTION[0], self.CAMPGROUND_DESCRIPTION[1], description)
+        
+        
+        self.do_click_and_verify(self.SUBMIT_NEW_CAMPGROUND_BUTTON[0], self.SUBMIT_NEW_CAMPGROUND_BUTTON[1])
+
+
+        # return the new state of the campgrounds page since it has transisitioned after the submit button
+        return yelpCampCampgroundsPage(self.driver)
 
     

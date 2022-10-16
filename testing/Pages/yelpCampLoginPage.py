@@ -27,13 +27,16 @@ class yelpCampLoginPage(yelpCampBasePage):
     def do_login(self, username, password):
         
         self.do_send_keys_and_verify(self.USERNAME_INPUT[0],self.USERNAME_INPUT[1], username)
+
         self.do_send_keys_and_verify(self.PASSWORD_INPUT[0],self.PASSWORD_INPUT[1], password)
+        
         self.do_click_and_verify(self.LOGIN_BUTTON[0], self.LOGIN_BUTTON[1])
-        return yelpCampCampgroundsPage(self.driver)
+        
+
 
     """check if the login button is visible"""
     def is_login_button_visible(self):
 
-        return self.is_element_enabled(self.LOGIN_BUTTON[0])
+        return self.is_element_visible(self.LOGIN_BUTTON[0], self.LOGIN_BUTTON[1])
 
     

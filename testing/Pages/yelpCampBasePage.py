@@ -62,7 +62,7 @@ class yelpCampBasePage:
         time_now = dt.now().strftime(Config.global_strftime)
         
         # attach a screenshot of the state of the webpage before clicking the intended web element
-        allure.attach(self.driver.get_screenshot_as_png(), name = Config.screenshot_path+element_name+"_before_"+time_now+".png", attachment_type=allure.attachment_type.PNG)
+        allure.attach(self.driver.get_screenshot_as_png(), name = Config.screenshot_path+time_now+"_before_click_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
 
         # do the click action
         self.do_click(by_locator)
@@ -74,7 +74,7 @@ class yelpCampBasePage:
         time_now = dt.now().strftime(Config.global_strftime)
 
         # attach a screenshot of the state of the webpage after clicking the intended web element
-        allure.attach(self.driver.get_screenshot_as_png(), name= Config.screenshot_path+element_name+"_after_"+time_now+".png", attachment_type=allure.attachment_type.PNG)
+        allure.attach(self.driver.get_screenshot_as_png(), name= Config.screenshot_path+time_now+"_after_click_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
         
         
     # send keys to web elements
@@ -84,10 +84,12 @@ class yelpCampBasePage:
 
     # send keys to web elements and take screenshots before and after the action is taken
     def do_send_keys_and_verify(self, by_locator, element_name,  text):
+
+        # get the current time to accurately log the screenshot
         time_now = dt.now().strftime(Config.global_strftime)
         
         # attach a screenshot of the state of the webpage before clicking the intended web element
-        allure.attach(self.driver.get_screenshot_as_png(), name = Config.screenshot_path+element_name+"_before_"+time_now+".png", attachment_type=allure.attachment_type.PNG)
+        allure.attach(self.driver.get_screenshot_as_png(), name = Config.screenshot_path+time_now+"_before_send_keys_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
         
         # do the send keys action
         self.do_send_keys(by_locator, text)
@@ -99,7 +101,7 @@ class yelpCampBasePage:
         time_now = dt.now().strftime(Config.global_strftime)
 
         # attach a screenshot of the state of the webpage after clicking the intended web element
-        allure.attach(self.driver.get_screenshot_as_png(), name= Config.screenshot_path+element_name+"_after_"+time_now+".png", attachment_type=allure.attachment_type.PNG)
+        allure.attach(self.driver.get_screenshot_as_png(), name= Config.screenshot_path+time_now+"_after_send_keys_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
         
     # get the text of a web element
     def get_element_text(self, by_loactor):
@@ -107,56 +109,73 @@ class yelpCampBasePage:
         return element.text
 
     # verify is a webelement is visible
-    def is_element_enabled(self, by_locator):
+    def is_element_visible(self, by_locator, element_name):
+
+        # get the current time to accurately log the screenshot
+        time_now = dt.now().strftime(Config.global_strftime)
+        
+        # attach a screenshot of the state of the webpage before clicking the intended web element
+        allure.attach(self.driver.get_screenshot_as_png(), name = Config.screenshot_path+time_now+"_before_check_visible_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
+
         element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator))
+
+        # get the timestamp after waiting for the webpage to adjust after clicking your web element
+        time_now = dt.now().strftime(Config.global_strftime)
+
+        # attach a screenshot of the state of the webpage after clicking the intended web element
+        allure.attach(self.driver.get_screenshot_as_png(), name= Config.screenshot_path+time_now+"_after_check_visible_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
+
+        # return the boolean of whether the element is visible
         return bool(element)
 
 
     """ see if base page elements are enabled """
 
-    # verify whether you can see the campgrounds nav button
-    def is_campgrounds_nav_button(self):
-
-        return bool(self.is_element_enabled())
 
     # verify whether the login nav button is visible
     def is_login_nav_button_enabled(self):
 
-        element =  self.is_element_enabled((By.LINK_TEXT,"Login"))
-        return bool(element)
+        return self.is_element_visible(self.NAV_LOGIN_ATAG[0], self.NAV_LOGIN_ATAG[1])
+        
 
     # verify whether the logout out nav button is visible
     def is_logout_nav_button_enabled(self):
 
-        element =  self.is_element_enabled((By.LINK_TEXT,"Logout"))
-        return bool(element)
+        return self.is_element_visible(self.NAV_LOGOUT_ATAG[0], self.NAV_LOGOUT_ATAG[1])
+        
 
     # use this function to logout of your yelp camp account
     def do_logout(self):
 
         self.do_click_and_verify(self.NAV_LOGOUT_ATAG[0], self.NAV_LOGOUT_ATAG[1])
 
+
     # navigate to the yelpCamp base page (also calle d the home page on the website)
     def nav_to_base_page(self):
 
         self.do_click_and_verify(self.NAV_HOME_ATAG[0], self.NAV_HOME_ATAG[1])
+
    
     # nav to the login page by clicking the login nav button, it's possible to also set_curr_url to login page
     def nav_to_login_page(self):
         
         self.do_click_and_verify(self.NAV_LOGIN_ATAG[0], self.NAV_LOGIN_ATAG[1])
 
+
     # nav to the yelCamp campgrounds page
     def nav_to_campgrounds_page(self):
         
         self.do_click_and_verify(self.NAV_CAMPGROUNDS_ATAG[0], self.NAV_CAMPGROUNDS_ATAG[1])
+
 
     # nav to the yelpCamp new campgrounds page
     def nav_to_new_campgrounds_page(self):
 
         self.do_click_and_verify(self.NAV_NEW_CAMPGROUNDS_ATAG[0],self.NAV_NEW_CAMPGROUNDS_ATAG[1])
 
+
     # nav to the yelpCamp register page
     def nav_to_register_page(self):
 
         self.do_click_and_verify(self.NAV_REGISTER_ATAG[0], self.NAV_REGISTER_ATAG[1])
+

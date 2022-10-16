@@ -8,7 +8,6 @@ from requests import delete
 """
 from Pages.yelpCampLoginPage import yelpCampLoginPage
 from Pages.yelpCampCampgroundsPage import yelpCampCampgroundsPage
-from Pages.yelpCampNewCampgroundPage import yelpCampNewCampgroundPage
 from TestCases.test_yelpCampBase import yelpCampBaseTest
 # note: even though init driver is called only as a fixture, it still needs to be imported
 from configtest import init_driver
