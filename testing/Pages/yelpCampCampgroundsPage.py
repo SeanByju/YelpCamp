@@ -27,6 +27,8 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
     EDIT_ATAG = ((By.XPATH,'//a[contains(text(),"Edit")]'), 'edit_campground_atag')
     DELETE_CAMPGROUND_BUTTON = ((By.XPATH,'//button[text()="Delete Campground"]'), 'delete_campground_button')
     VIEW_FIRST_CAMPGROUND_BUTTON = ((By.XPATH, '//a[contains(text(),"View My First Camp")]'), 'view_first_campground_button')
+    USERNAME_REVIEW_SEARCH = (By.XPATH, '//h6[contains(text(),"'+Config.USERNAME+'")]')
+    REVIEW_IS_NOT_DEFINED_TAG = ()
 
     
     """
@@ -91,9 +93,6 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
         """ click the submit reivew button"""
         self.do_click_and_verify(self.SUBMIT_REVIEW_BUTTON[0], self.SUBMIT_REVIEW_BUTTON[1])
 
-        """return to the campgrounds page of the webpage after submitting"""
-        self.do_click_and_verify(self.CAMPGROUNDS_NAV_BUTTON[0], self.CAMPGROUNDS_NAV_BUTTON[1])
-
 
 
     
@@ -103,16 +102,17 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
     """ if the reviewer and star rating exist, you found the review you are searching for"""
     def search_review(self, stars, review, reviewer):
 
-        review_list = self.driver.find_elements(review[0], review[1])
+        review_list = self.driver.find_elements(By.XPATH, '//h5[contains(text(),"'+review+'")]/parent::div')
 
-        for i in range(0, len(review_list)):
+        for webelement in review_list:
+            
+            reviewer_webelement = webelement.find_element(By.XPATH, '//h6[contains(text(),"'+reviewer+'")]')
+            
+            data_rating_web_element = webelement.find_element(By.XPATH, '//p[contains(text(),"Rated: '+stars+' stars")]')
+            
 
-            review_parent_card = review_list[i].find_element_by_xpath("..")
-            reviewer = review_parent_card.find_element_by_xpath(reviewer[0], reviewer[1])
-            data_rating = review_parent_card.find_element_by_xpath(stars[0], stars[1])
-
-            if data_rating and reviewer:
-
+            if (data_rating_web_element.text == "Rated: "+stars+" stars") and (reviewer_webelement.text == "By: "+reviewer):
+                print("the text matched")
                 return True
             
             else:

@@ -1,4 +1,5 @@
-from logging import config
+
+
 import pytest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager

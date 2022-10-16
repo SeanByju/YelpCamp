@@ -19,7 +19,7 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
 
     """ first test, login into your account and verify you logged in """
     def test_1_login_and_verify(self):
-        print("initiate login and verify test")
+
         self.yelpCampLoginPage = yelpCampLoginPage(self.driver)
         self.yelpCampCampgroundsPage = self.yelpCampLoginPage.do_login(Config.USERNAME, Config.PASSWORD)
         """ verify that login was successful by checking if the mapbox canvs and logout buttons are visible"""
@@ -29,33 +29,37 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
         """
         print(self.yelpCampCampgroundsPage.get_element_text(self.yelpCampCampgroundsPage.VIEW_FIRST_CAMPGROUND_BUTTON[0]))
         """
+
+        """ add condition to verify if the number of campgrounds that are now visible has increases by one since verifying the test """
         assert flag
 
     
     # must be loggeed in to add a campground
     def test_2_add_campground(self):
+
         self.yelpCampNewCampgroundPage = yelpCampNewCampgroundPage(self.driver)
         self.yelpCampNewCampgroundPage = self.yelpCampNewCampgroundPage.click_new_campgrounds_atag()
         self.yelpCampNewCampgroundPage.add_campground()
     
 
     def test_3_write_review(self):
+
         self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(self.driver)
         self.yelpCampCampgroundsPage.write_review(Config.REVIEW_STAR_RATING, Config.REVIEW_DESCRIPTION)
+        flag = self.yelpCampCampgroundsPage.search_review(Config.REVIEW_STAR_RATING, Config.REVIEW_DESCRIPTION, Config.USERNAME)
         self.yelpCampCampgroundsPage.do_click_and_verify(self.yelpCampCampgroundsPage.CAMPGROUNDS_NAV_BUTTON[0], self.yelpCampCampgroundsPage.CAMPGROUNDS_NAV_BUTTON[1])
-        
+        assert flag
         
 
 
     def test_4_delete_campground(self):
+
         self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(self.driver)
         self.yelpCampCampgroundsPage.delete_campground(Config.CAMPGROUND_NAME)
 
 
-
-
     def test_5_logout_and_verify(self):
-        print("initiate logout and verify test")
+
         self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(self.driver)
         self.yelpCampCampgroundsPage.do_logout()
         flag = self.yelpCampCampgroundsPage.is_good_bye_div_visible()

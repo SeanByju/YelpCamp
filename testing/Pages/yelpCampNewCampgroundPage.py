@@ -1,5 +1,6 @@
 """yelpCamp page object holds all of the web elements and actions that can be used on all yelpcamp pages"""
 
+from selenium import webdriver
 from distutils.command.config import config
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC

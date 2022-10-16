@@ -1,9 +1,5 @@
 # page object for login page
 
-import sys
-from selenium.webdriver import ActionChains
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 from Config.config import Config
