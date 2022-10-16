@@ -53,9 +53,6 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
     """ and you're logging back in. """
     def is_welcome_back_alert_visible(self):
 
-        print("\n this is the page that you are looking at before looking for the welcome back alert div element")
-
-        print("\n"+self.driver.find_element(By.XPATH,'//main').text+"\n")
         
         return self.is_element_visible(self.WELCOME_BACK_ALERT_DIV[0], self.WELCOME_BACK_ALERT_DIV[1])
 
@@ -162,13 +159,6 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
         self.do_click_and_verify(self.EDIT_ATAG[0], self.EDIT_ATAG[1])
 
 
-        print("\n this is the page text that you can see before you are supposed to hit the delete campground button \n")
-
-        print("\n"+self.driver.current_url+"\n")
-
-        print("\n"+self.driver.find_element(By.XPATH,"//main").text+"\n")
-
-
         "click the delete button"
         self.do_click_and_verify(self.DELETE_CAMPGROUND_BUTTON[0], self.DELETE_CAMPGROUND_BUTTON[1])
 
@@ -179,10 +169,6 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
     """ verify that the campground was added by checking the add new campground success div element is now visible """
     def verify_add_campground(self):
 
-
-        print("\n print the page that the driver is looking at before checking if the add new add campground div is visible \n")
-
-        print("\n"+ self.driver.find_element(By.XPATH, "//main").text +"\n")
 
         return self.is_element_visible(self.ADD_NEW_CAMPGROUND_SUCCESS_DIV[0], self.ADD_NEW_CAMPGROUND_SUCCESS_DIV[1])
 

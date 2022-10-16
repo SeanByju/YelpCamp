@@ -21,9 +21,6 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
     # first test, login into your account and verify you logged in
     def test_1_login_and_verify(self):
 
-        print(self.driver)
-
-
         self.yelpCampBasePage = yelpCampBasePage(self.driver)
 
 

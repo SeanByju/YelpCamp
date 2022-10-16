@@ -21,8 +21,6 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
     # first test, login into your account and verify you logged in
     def test_1_login_and_verify(self):
 
-        print(self.driver)
-
 
         self.yelpCampBasePage = yelpCampBasePage(self.driver)
 
@@ -37,7 +35,6 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
 
 
         self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(self.driver)
-
 
         
         flag = self.yelpCampCampgroundsPage.is_welcome_back_alert_div_visible()
@@ -89,7 +86,7 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
         assert flag
 
 
-    def test_7_logout_and_verify(self):
+    def test_4_logout_and_verify(self):
 
         
         self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(self.driver)
