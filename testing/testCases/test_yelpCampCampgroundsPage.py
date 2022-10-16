@@ -68,7 +68,7 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
         flag = self.yelpCampCampgroundsPage.search_review(Config.REVIEW_STAR_RATING, Config.REVIEW_DESCRIPTION, Config.USERNAME)
 
 
-        self.yelpCampCampgroundsPage.do_click_and_verify(self.yelpCampCampgroundsPage.CAMPGROUNDS_NAV_BUTTON[0], self.yelpCampCampgroundsPage.CAMPGROUNDS_NAV_BUTTON[1])
+        self.yelpCampCampgroundsPage.nav_to_campgrounds_page()
         
         
         assert flag
@@ -82,6 +82,11 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
         
         
         self.yelpCampCampgroundsPage.delete_campground(Config.CAMPGROUND_NAME)
+
+        
+        
+
+
 
 
     def test_5_logout_and_verify(self):

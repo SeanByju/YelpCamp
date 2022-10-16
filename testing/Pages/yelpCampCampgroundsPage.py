@@ -112,6 +112,7 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
             
 
             if (data_rating_web_element.text == "Rated: "+stars+" stars") and (reviewer_webelement.text == "By: "+reviewer):
+                
                 print("the text matched")
                 return True
             

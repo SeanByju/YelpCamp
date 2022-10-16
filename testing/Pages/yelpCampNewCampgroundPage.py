@@ -33,33 +33,23 @@ class yelpCampNewCampgroundPage(yelpCampBasePage):
     
     def add_campground(self):
         
-        print("campground name input starts")
+        
         self.do_send_keys_and_verify(self.CAMPGROUND_NAME_INPUT[0],self.CAMPGROUND_NAME_INPUT[1], Config.CAMPGROUND_NAME)
         
-        print("campground location input starts")
+        
         self.do_send_keys_and_verify(self.CAMPGROUND_LOCATION_INPUT[0], self.CAMPGROUND_LOCATION_INPUT[1], Config.CAMPGROUND_LOCATION)
-        
-        print("choose file input starts")
-
-        
-        print("initial click passed")
 
 
         self.do_send_keys_and_verify(self.CHOOSE_FILES_BUTTON[0], self.CHOOSE_FILES_BUTTON[1], Config.UPLOAD_IMAGE)
         
-        print("campground price input starts")
+        
         self.do_send_keys_and_verify(self.CAMPGROUND_PRICE[0], self.CAMPGROUND_PRICE[1], Config.CAMPGROUND_PRICE)
         
-        print("campground description input starts")
+        
         self.do_send_keys_and_verify(self.CAMPGROUND_DESCRIPTION[0], self.CAMPGROUND_DESCRIPTION[1], Config.CAMPGROUND_DESCRIPTION)
         
-        print("click submit button")
-        self.do_click_and_verify(self.SUBMIT_NEW_CAMPGROUND_BUTTON[0], self.SUBMIT_NEW_CAMPGROUND_BUTTON[1])
         
-        """
-        "test finding the submit button"
-        self.driver.find_element(By.XPATH,'').click()
-        """
+        self.do_click_and_verify(self.SUBMIT_NEW_CAMPGROUND_BUTTON[0], self.SUBMIT_NEW_CAMPGROUND_BUTTON[1])
 
 
         return yelpCampCampgroundsPage(self.driver)
@@ -68,21 +58,7 @@ class yelpCampNewCampgroundPage(yelpCampBasePage):
     # return the new campground page
     def click_new_campgrounds_atag(self):
 
-        self.do_click_and_verify(self.NEW_CAMPGROUNDS_BUTTON[0], self.NEW_CAMPGROUNDS_BUTTON[1])
+        self.do_click_and_verify(self.NAV_NEW_CAMPGROUNDS_ATAG[0], self.NAV_NEW_CAMPGROUNDS_ATAG[1])
 
         return yelpCampNewCampgroundPage(self.driver)
 
-    def delete_campground(self):
-
-        self.do_click_and_verify()
-
-
-
-        """
-        input_tags = self.driver.find_elements(By.TAG_NAME,'input')
-        for web_element in input_tags:
-            print(web_element.get_attribute("id"))
-        
-        print("C:\\Users\\Owner\\Documents\\Programming\\YelpCamp\\testing\\Resources\Images\\redwood-forrest-1.jpg")
-        print(self.driver.find_element(By.ID,"image").send_keys())
-        """
