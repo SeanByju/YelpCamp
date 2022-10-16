@@ -1,6 +1,8 @@
 """ test yelpCamp camporgrounds page functions"""
 
 import pytest
+
+from Pages.yelpCampBasePage import yelpCampBasePage
 """
 from requests import delete
 """
@@ -22,18 +24,22 @@ class Test_dummy(yelpCampBaseTest):
 
         self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
-        self.driver.get("https://morning-savannah-46253.herokuapp.com/campgrounds/62edfc449221806e44c9d6a9")
+        self.driver.get("https://morning-savannah-46253.herokuapp.com/")
 
         self.driver.implicitly_wait(60)
 
         self.driver.delete_all_cookies()
 
-        self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(self.driver)
+        self.yelpCampBasePage = yelpCampBasePage(self.driver)
 
-        flag = self.yelpCampCampgroundsPage.search_review("5", 'Loved it here!', "boggitybog")
+        self.yelpCampBasePage.nav_to_login_page()
+
+        self.yelpCampBasePage.nav_to_base_page()
+
+        self.yelpCampBasePage.nav_to_campgrounds_page()
+
+        self.yelpCampBasePage.nav_to_register_page()
 
         self.driver.close()
 
         self.driver.quit()
-
-        assert flag

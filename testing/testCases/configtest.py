@@ -12,7 +12,7 @@ from datetime import datetime as dt
 
 
 "adjust the subpage to determine the url you are going to start your automation on"
-subpage = "login"
+subpage = ""
 getBrowser = "chrome"
 
 @pytest.fixture(scope="class")
