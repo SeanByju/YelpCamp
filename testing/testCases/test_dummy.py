@@ -10,7 +10,7 @@ from Pages.yelpCampLoginPage import yelpCampLoginPage
 from Pages.yelpCampCampgroundsPage import yelpCampCampgroundsPage
 from TestCases.test_yelpCampBase import yelpCampBaseTest
 # note: even though init driver is called only as a fixture, it still needs to be imported
-from configtest import init_driver
+from conftest import init_driver
 from Config.config import Config
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager

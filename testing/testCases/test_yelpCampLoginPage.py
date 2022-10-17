@@ -4,7 +4,7 @@ import pytest
 from Pages.yelpCampLoginPage import yelpCampLoginPage
 from Pages.yelpCampCampgroundsPage import yelpCampCampgroundsPage
 from TestCases.test_yelpCampBase import yelpCampBaseTest
-from configtest import init_driver
+from conftest import init_driver
 from Config.config import Config
 
 @pytest.mark.usefixtures("init_driver")

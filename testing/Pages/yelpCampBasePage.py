@@ -2,6 +2,7 @@
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains as AC
 from selenium.webdriver.common.by import By
 import allure
 from datetime import datetime as dt
@@ -58,11 +59,17 @@ class yelpCampBasePage:
     # click web elements and take screenshots before and after so you can visually verify what actions occured
     def do_click_and_verify(self, by_locator, element_name):
 
+        # initialize action chains object
+        actions = AC(self.driver)        
+
+        # move to the element
+        actions.move_to_element(WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)))
+
         # get the timestamp before clicking your web element
         time_now = dt.now().strftime(Config.global_strftime)
         
         # attach a screenshot of the state of the webpage before clicking the intended web element
-        allure.attach(self.driver.get_screenshot_as_png(), name = time_now+"_before_click_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
+        allure.attach(self.driver.get_screenshot_as_png(), name = time_now+"_before_click_"+element_name+"_"+Config.browser+".png", attachment_type=allure.attachment_type.PNG)
 
         # do the click action
         self.do_click(by_locator)
@@ -74,7 +81,7 @@ class yelpCampBasePage:
         time_now = dt.now().strftime(Config.global_strftime)
 
         # attach a screenshot of the state of the webpage after clicking the intended web element
-        allure.attach(self.driver.get_screenshot_as_png(), name= time_now+"_after_click_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
+        allure.attach(self.driver.get_screenshot_as_png(), name= time_now+"_after_click_"+element_name+"_"+Config.browser+".png", attachment_type=allure.attachment_type.PNG)
         
         
     # send keys to web elements
@@ -84,12 +91,18 @@ class yelpCampBasePage:
 
     # send keys to web elements and take screenshots before and after the action is taken
     def do_send_keys_and_verify(self, by_locator, element_name,  text):
+        
+        # initialize action chains object
+        actions = AC(self.driver)        
+
+        # move to the element
+        actions.move_to_element(WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)))
 
         # get the current time to accurately log the screenshot
         time_now = dt.now().strftime(Config.global_strftime)
         
         # attach a screenshot of the state of the webpage before clicking the intended web element
-        allure.attach(self.driver.get_screenshot_as_png(), name = time_now+"_before_send_keys_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
+        allure.attach(self.driver.get_screenshot_as_png(), name = time_now+"_before_send_keys_"+element_name+"_"+Config.browser+".png", attachment_type=allure.attachment_type.PNG)
         
         # do the send keys action
         self.do_send_keys(by_locator, text)
@@ -101,21 +114,35 @@ class yelpCampBasePage:
         time_now = dt.now().strftime(Config.global_strftime)
 
         # attach a screenshot of the state of the webpage after clicking the intended web element
-        allure.attach(self.driver.get_screenshot_as_png(), name= time_now+"_after_send_keys_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
+        allure.attach(self.driver.get_screenshot_as_png(), name= time_now+"_after_send_keys_"+element_name+"_"+Config.browser+".png", attachment_type=allure.attachment_type.PNG)
         
     # get the text of a web element
-    def get_element_text(self, by_loactor):
-        element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_loactor))
+    def get_element_text(self, by_locator):
+        
+        # initialize action chains object
+        actions = AC(self.driver)        
+
+        # move to the element
+        actions.move_to_element(by_locator)
+
+        element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator))
+        
         return element.text
 
     # verify is a webelement is visible
     def is_element_visible(self, by_locator, element_name):
 
+        # initialize action chains object
+        actions = AC(self.driver)        
+
+        # move to the element
+        actions.move_to_element(WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)))
+
         # get the current time to accurately log the screenshot
         time_now = dt.now().strftime(Config.global_strftime)
         
         # attach a screenshot of the state of the webpage before clicking the intended web element
-        allure.attach(self.driver.get_screenshot_as_png(), name = time_now+"_before_check_visible_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
+        allure.attach(self.driver.get_screenshot_as_png(), name = time_now+"_before_check_visible_"+element_name+"_"+Config.browser+".png", attachment_type=allure.attachment_type.PNG)
 
         element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator))
 
@@ -123,7 +150,7 @@ class yelpCampBasePage:
         time_now = dt.now().strftime(Config.global_strftime)
 
         # attach a screenshot of the state of the webpage after clicking the intended web element
-        allure.attach(self.driver.get_screenshot_as_png(), name= time_now+"_after_check_visible_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
+        allure.attach(self.driver.get_screenshot_as_png(), name= time_now+"_after_check_visible_"+element_name+"_"+Config.browser+".png", attachment_type=allure.attachment_type.PNG)
 
         # return the boolean of whether the element is visible
         return bool(element)

@@ -1,9 +1,8 @@
 
 class Config:
 
-    CHROME_DRIVER_EXECUTABLE_PATH = "Drivers/chromedriver.exe"
-    FIREFOX_DRIVER_EXECUTABLE_PATH = "Drivers/geckodriver.exe"
-    EDGE_DRIVER_EXECUTABLE_PATH = "Drivers/msedgedriver.exe"
+    """ options for browser include chrome, firefox, and edge"""
+    browser = "firefox"
 
     "set the format for the screenshot that will be taken during the automation"
     global_strftime = "%d-%m-%Y_%H-%M-%S"

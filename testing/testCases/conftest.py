@@ -1,6 +1,7 @@
 
 
 import pytest
+import allure
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
@@ -16,7 +17,8 @@ from datetime import datetime as dt
 "adjust the subpage to determine the url you are going to start your automation on"
 subpage = ""
 """ browser options include chrome, firefox, and edge"""
-getBrowser = "chrome"
+getBrowser = Config.browser
+
 
 @pytest.fixture(scope="class")
 def init_driver(request):
@@ -29,10 +31,10 @@ def init_driver(request):
 
     elif getBrowser == "firefox":
         _driver = webdriver.Firefox(service= Service(GeckoDriverManager().install()))
-        pass
+        
     elif getBrowser == "edge":
         _driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()))
-        pass
+        
 
 
     _driver.get("https://morning-savannah-46253.herokuapp.com/"+subpage)
@@ -43,7 +45,7 @@ def init_driver(request):
 
     time_now = dt.now().strftime(Config.global_strftime)
     
-    _driver.get_screenshot_as_file("init_driver_"+time_now+".png")
+    allure.attach(_driver.get_screenshot_as_png(), name="init_driver_"+time_now+".png", attachment_type=allure.attachment_type.PNG)
 
     request.cls.driver = _driver
   
