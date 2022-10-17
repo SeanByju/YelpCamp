@@ -62,7 +62,7 @@ class yelpCampBasePage:
         time_now = dt.now().strftime(Config.global_strftime)
         
         # attach a screenshot of the state of the webpage before clicking the intended web element
-        allure.attach(self.driver.get_screenshot_as_png(), name = Config.screenshot_path+time_now+"_before_click_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
+        allure.attach(self.driver.get_screenshot_as_png(), name = time_now+"_before_click_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
 
         # do the click action
         self.do_click(by_locator)
@@ -74,7 +74,7 @@ class yelpCampBasePage:
         time_now = dt.now().strftime(Config.global_strftime)
 
         # attach a screenshot of the state of the webpage after clicking the intended web element
-        allure.attach(self.driver.get_screenshot_as_png(), name= Config.screenshot_path+time_now+"_after_click_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
+        allure.attach(self.driver.get_screenshot_as_png(), name= time_now+"_after_click_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
         
         
     # send keys to web elements
@@ -89,7 +89,7 @@ class yelpCampBasePage:
         time_now = dt.now().strftime(Config.global_strftime)
         
         # attach a screenshot of the state of the webpage before clicking the intended web element
-        allure.attach(self.driver.get_screenshot_as_png(), name = Config.screenshot_path+time_now+"_before_send_keys_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
+        allure.attach(self.driver.get_screenshot_as_png(), name = time_now+"_before_send_keys_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
         
         # do the send keys action
         self.do_send_keys(by_locator, text)
@@ -101,7 +101,7 @@ class yelpCampBasePage:
         time_now = dt.now().strftime(Config.global_strftime)
 
         # attach a screenshot of the state of the webpage after clicking the intended web element
-        allure.attach(self.driver.get_screenshot_as_png(), name= Config.screenshot_path+time_now+"_after_send_keys_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
+        allure.attach(self.driver.get_screenshot_as_png(), name= time_now+"_after_send_keys_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
         
     # get the text of a web element
     def get_element_text(self, by_loactor):
@@ -115,7 +115,7 @@ class yelpCampBasePage:
         time_now = dt.now().strftime(Config.global_strftime)
         
         # attach a screenshot of the state of the webpage before clicking the intended web element
-        allure.attach(self.driver.get_screenshot_as_png(), name = Config.screenshot_path+time_now+"_before_check_visible_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
+        allure.attach(self.driver.get_screenshot_as_png(), name = time_now+"_before_check_visible_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
 
         element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator))
 
@@ -123,7 +123,7 @@ class yelpCampBasePage:
         time_now = dt.now().strftime(Config.global_strftime)
 
         # attach a screenshot of the state of the webpage after clicking the intended web element
-        allure.attach(self.driver.get_screenshot_as_png(), name= Config.screenshot_path+time_now+"_after_check_visible_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
+        allure.attach(self.driver.get_screenshot_as_png(), name= time_now+"_after_check_visible_"+element_name+".png", attachment_type=allure.attachment_type.PNG)
 
         # return the boolean of whether the element is visible
         return bool(element)

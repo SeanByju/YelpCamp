@@ -35,7 +35,6 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
 
         self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(self.driver)
 
-
         
         flag = self.yelpCampCampgroundsPage.is_welcome_back_alert_div_visible()
 

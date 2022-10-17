@@ -7,7 +7,6 @@ class Config:
 
     "set the format for the screenshot that will be taken during the automation"
     global_strftime = "%d-%m-%Y_%H-%M-%S"
-    screenshot_path = "Reports/screenshots/"
 
     """ login page inputs """
     BASE_URL = "https://morning-savannah-46253.herokuapp.com"
@@ -25,5 +24,3 @@ class Config:
     REVIEW_DESCRIPTION = "test"
     REVIEW_STAR_RATING = "5"
 
-
-    
