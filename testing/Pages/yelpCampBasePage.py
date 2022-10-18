@@ -1,13 +1,12 @@
 """yelpCamp page object holds all of the web elements and actions that can be used on all yelpcamp pages"""
 
+import time
+import allure
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains as AC
 from selenium.webdriver.common.by import By
-import allure
 from datetime import datetime as dt
-import time
-
 from Config.config import Config
 
 
@@ -59,11 +58,8 @@ class yelpCampBasePage:
     # click web elements and take screenshots before and after so you can visually verify what actions occured
     def do_click_and_verify(self, by_locator, element_name):
 
-        # initialize action chains object
-        actions = AC(self.driver)        
-
         # move to the element
-        actions.move_to_element(WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)))
+        self.driver.execute_script("arguments[0].scrollIntoView();", WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)))
 
         # get the timestamp before clicking your web element
         time_now = dt.now().strftime(Config.global_strftime)
@@ -92,11 +88,8 @@ class yelpCampBasePage:
     # send keys to web elements and take screenshots before and after the action is taken
     def do_send_keys_and_verify(self, by_locator, element_name,  text):
         
-        # initialize action chains object
-        actions = AC(self.driver)        
-
         # move to the element
-        actions.move_to_element(WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)))
+        self.driver.execute_script("arguments[0].scrollIntoView();", WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)))
 
         # get the current time to accurately log the screenshot
         time_now = dt.now().strftime(Config.global_strftime)
@@ -122,21 +115,19 @@ class yelpCampBasePage:
         # initialize action chains object
         actions = AC(self.driver)        
 
-        # move to the element
-        actions.move_to_element(by_locator)
-
         element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator))
+
+        # move to the element
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+
         
         return element.text
 
     # verify is a webelement is visible
     def is_element_visible(self, by_locator, element_name):
 
-        # initialize action chains object
-        actions = AC(self.driver)        
-
         # move to the element
-        actions.move_to_element(WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)))
+        self.driver.execute_script("arguments[0].scrollIntoView();", WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)))
 
         # get the current time to accurately log the screenshot
         time_now = dt.now().strftime(Config.global_strftime)
