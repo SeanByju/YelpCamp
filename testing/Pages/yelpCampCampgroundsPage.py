@@ -91,8 +91,16 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
     """ logout and veirfy that you logged out successfully"""
     def do_logout_and_verify(self):
 
+        
         self.do_logout()
+
+
+        
         self.is_element_visible(self.GOODBYE_ALERT_DIV[0], self.GOODBYE_ALERT_DIV[1])
+
+        
+        
+        return yelpCampCampgroundsPage(self.driver)
 
 
 
@@ -113,7 +121,7 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
             case "1":
                 self.do_click_and_verify(self.ONE_STAR_RATE_LABEL[0],self.ONE_STAR_RATE_LABEL[1])
 
-        """wriet the description for your review"""
+        """write the description for your review"""
         self.do_send_keys_and_verify(self.DESCRIPTION_TEXTAREA[0], self.DESCRIPTION_TEXTAREA[1], review)
 
         """ click the submit reivew button"""
@@ -140,6 +148,7 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
             if (data_rating_web_element.text == "Rated: "+stars+" stars") and (reviewer_webelement.text == "By: "+reviewer):
                 
                 print("the text matched")
+
                 return True
             
             else:
@@ -178,6 +187,7 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
     """ verify that the welcome back alert div is visible """
     def is_welcome_back_alert_div_visible(self):
 
+
         return self.is_element_visible(self.WELCOME_BACK_ALERT_DIV[0], self.WELCOME_BACK_ALERT_DIV[1])
 
 
@@ -186,21 +196,27 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
     
     def add_campground(self, name, location, image, price, description):
         
+
         
         self.do_send_keys_and_verify(self.CAMPGROUND_NAME_INPUT[0],self.CAMPGROUND_NAME_INPUT[1], name)
-        
+
+
         
         self.do_send_keys_and_verify(self.CAMPGROUND_LOCATION_INPUT[0], self.CAMPGROUND_LOCATION_INPUT[1], location)
 
 
+
         self.do_send_keys_and_verify(self.CHOOSE_FILES_BUTTON[0], self.CHOOSE_FILES_BUTTON[1], image)
-        
+
+
         
         self.do_send_keys_and_verify(self.CAMPGROUND_PRICE[0], self.CAMPGROUND_PRICE[1], price)
-        
+
+
         
         self.do_send_keys_and_verify(self.CAMPGROUND_DESCRIPTION[0], self.CAMPGROUND_DESCRIPTION[1], description)
-        
+
+
         
         self.do_click_and_verify(self.SUBMIT_NEW_CAMPGROUND_BUTTON[0], self.SUBMIT_NEW_CAMPGROUND_BUTTON[1])
 

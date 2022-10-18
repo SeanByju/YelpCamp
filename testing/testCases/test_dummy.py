@@ -19,7 +19,7 @@ from selenium.webdriver.chrome.service import Service
 
 class Test_dummy(yelpCampBaseTest):
     
-    def test_dummey(self):
+    def test_dummy(self):
 
         self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 

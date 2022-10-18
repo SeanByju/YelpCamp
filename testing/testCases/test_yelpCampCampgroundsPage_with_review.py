@@ -24,10 +24,7 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
         self.yelpCampBasePage = yelpCampBasePage(self.driver)
 
 
-        self.yelpCampBasePage.nav_to_login_page()
-
-
-        self.yelpCampLoginPage = yelpCampLoginPage(self.driver)
+        self.yelpCampLoginPage = self.yelpCampBasePage.nav_to_login_page()
 
 
         self.yelpCampLoginPage.do_login(Config.USERNAME, Config.PASSWORD)
