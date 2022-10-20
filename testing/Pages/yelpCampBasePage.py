@@ -19,11 +19,9 @@ class yelpCampBasePage:
     def __init__(self,driver):
 
         self.driver = driver
-        """
-        time_now = dt.now().strftime(Config.global_strftime)
-        time.sleep(10)
-        driver.get_screenshot_as_file("init_driver_"+time_now+".png")
-        """
+
+
+
 
     """ Base Web elements"""
     NAV_HOME_ATAG = ((By.XPATH, '//a[text()="Home"]'), "nav_home_atag")
@@ -167,15 +165,17 @@ class yelpCampBasePage:
 
         self.do_click_and_verify(self.NAV_LOGOUT_ATAG[0], self.NAV_LOGOUT_ATAG[1])
 
-        return yelpCampBasePage(self.driver)
+        # return the driver and initiate a campgrounds page object
+        return self.driver
 
 
     # navigate to the yelpCamp base page (also calle d the home page on the website)
-    def nav_to_base_page(self):
+    def nav_to_home_page(self):
 
         self.do_click_and_verify(self.NAV_HOME_ATAG[0], self.NAV_HOME_ATAG[1])
 
-        return yelpCampBasePage(self.driver)
+        # return the driver and initiatie a home page object 
+        return self.driver
 
    
     # nav to the login page by clicking the login nav button, it's possible to also set_curr_url to login page
@@ -183,7 +183,9 @@ class yelpCampBasePage:
         
         self.do_click_and_verify(self.NAV_LOGIN_ATAG[0], self.NAV_LOGIN_ATAG[1])
 
-        return yelpCampBasePage(self.driver)
+        # return the driver and initiate it into a login page object
+        return self.driver
+
 
 
     # nav to the yelCamp campgrounds page
@@ -191,18 +193,25 @@ class yelpCampBasePage:
         
         self.do_click_and_verify(self.NAV_CAMPGROUNDS_ATAG[0], self.NAV_CAMPGROUNDS_ATAG[1])
 
-        return yelpCampBasePage(self.driver)
+        # return the driver and initiate it into a campgrounds page object
+        return self.driver
+
+
 
     # nav to the yelpCamp new campgrounds page
     def nav_to_new_campgrounds_page(self):
 
         self.do_click_and_verify(self.NAV_NEW_CAMPGROUNDS_ATAG[0],self.NAV_NEW_CAMPGROUNDS_ATAG[1])
 
-        return yelpCampBasePage(self.driver)
+        # return the driver and initiate it into a new campgrounds object
+        return self.driver
+
+
 
     # nav to the yelpCamp register page
     def nav_to_register_page(self):
 
         self.do_click_and_verify(self.NAV_REGISTER_ATAG[0], self.NAV_REGISTER_ATAG[1])
 
-        return yelpCampBasePage(self.driver)
+        # return the driver and initiate it into a register page object
+        return self.driver

@@ -31,6 +31,13 @@ class yelpCampLoginPage(yelpCampBasePage):
         self.do_send_keys_and_verify(self.PASSWORD_INPUT[0],self.PASSWORD_INPUT[1], password)
         
         self.do_click_and_verify(self.LOGIN_BUTTON[0], self.LOGIN_BUTTON[1])
+
+        print("\n this is the page that you are looking at after clicking the login in button: \n")
+
+        print(self.driver.find_element(By.XPATH, "//main").text)
+
+        # return the driver and initiate a campgrounds page object
+        return self.driver
         
 
 

@@ -2,7 +2,7 @@
 class Config:
 
     """ options for browser include chrome, firefox, and edge"""
-    browser = "firefox"
+    browser = "chrome"
 
     "set the format for the screenshot that will be taken during the automation"
     global_strftime = "%d-%m-%Y_%H-%M-%S"

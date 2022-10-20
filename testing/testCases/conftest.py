@@ -13,6 +13,8 @@ from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.edge.service import Service
 from datetime import datetime as dt
 
+""" yelpCamp url """
+yelpCamp_url = "https://morning-savannah-46253.herokuapp.com/"
 
 "adjust the subpage to determine the url you are going to start your automation on"
 subpage = ""
@@ -37,7 +39,7 @@ def init_driver(request):
         
 
 
-    _driver.get("https://morning-savannah-46253.herokuapp.com/"+subpage)
+    _driver.get(yelpCamp_url+subpage)
 
     _driver.implicitly_wait(60)
 

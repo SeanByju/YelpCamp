@@ -100,7 +100,7 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
 
         
         
-        return yelpCampCampgroundsPage(self.driver)
+        return self
 
 
 
@@ -126,6 +126,9 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
 
         """ click the submit reivew button"""
         self.do_click_and_verify(self.SUBMIT_REVIEW_BUTTON[0], self.SUBMIT_REVIEW_BUTTON[1])
+        
+        return self.driver
+
 
 
 
@@ -170,6 +173,9 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
 
         "click the delete button"
         self.do_click_and_verify(self.DELETE_CAMPGROUND_BUTTON[0], self.DELETE_CAMPGROUND_BUTTON[1])
+
+
+        return self.driver
 
 
 
@@ -222,6 +228,6 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
 
 
         # return the new state of the campgrounds page since it has transisitioned after the submit button
-        return yelpCampCampgroundsPage(self.driver)
+        return self.driver
 
     
