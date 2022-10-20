@@ -88,6 +88,13 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
 
 
 
+
+    def is_submit_new_campground_button_visible(self):
+
+        return self.is_element_visible(self.SUBMIT_NEW_CAMPGROUND_BUTTON[0], self.SUBMIT_NEW_CAMPGROUND_BUTTON[1])
+
+
+
     """ logout and veirfy that you logged out successfully"""
     def do_logout_and_verify(self):
 

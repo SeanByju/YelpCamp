@@ -1,6 +1,6 @@
 import pytest
 
-
+from Pages.yelpCampBasePage import yelpCampBasePage
 from Pages.yelpCampLoginPage import yelpCampLoginPage
 from Pages.yelpCampCampgroundsPage import yelpCampCampgroundsPage
 from TestCases.test_yelpCampBase import yelpCampBaseTest
@@ -10,17 +10,21 @@ from Config.config import Config
 @pytest.mark.usefixtures("init_driver")
 class Test_yelpCampLoginPage(yelpCampBaseTest):
 
-    def test_login_button_visible(self):
-        driver = self.driver
-        self.yelpCampLoginPage = yelpCampLoginPage(driver)
-        flag = self.yelpCampLoginPage.is_login_button_visible()
-        assert flag
+    # first test, login into your account and verify you logged in
+    def test_1_login_and_verify(self):
 
-    def test_login(self):
-        driver = self.driver
-        self.yelpCampLoginPage = yelpCampLoginPage(driver)
-        yelpCampCampgroundsPage = self.yelpCampLoginPage.do_login(Config.USERNAME, Config.PASSWORD) 
-        flag = yelpCampCampgroundsPage.is_welcome_back_alert_visible()
+        self.yelpCampBasePage = yelpCampBasePage(self.driver)
+
+
+        self.yelpCampLoginPage = yelpCampLoginPage(self.yelpCampBasePage.nav_to_login_page())
+
+
+        self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(self.yelpCampLoginPage.do_login(Config.USERNAME, Config.PASSWORD))
+
+        
+        flag = self.yelpCampCampgroundsPage.is_welcome_back_alert_div_visible()
+
+
         assert flag
 
     

@@ -25,16 +25,10 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
         self.yelpCampBasePage = yelpCampBasePage(self.driver)
 
 
-        self.yelpCampBasePage.nav_to_login_page()
+        self.yelpCampLoginPage = yelpCampLoginPage(self.yelpCampBasePage.nav_to_login_page())
 
 
-        self.yelpCampLoginPage = yelpCampLoginPage(self.driver)
-
-
-        self.yelpCampLoginPage.do_login(Config.USERNAME, Config.PASSWORD)
-
-
-        self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(self.driver)
+        self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(self.yelpCampLoginPage.do_login(Config.USERNAME, Config.PASSWORD))
 
         
         flag = self.yelpCampCampgroundsPage.is_welcome_back_alert_div_visible()
@@ -56,34 +50,30 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
         self.yelpCampCampgroundsPage.add_campground(Config.CAMPGROUND_NAME, Config.CAMPGROUND_LOCATION, Config.UPLOAD_IMAGE, Config.CAMPGROUND_PRICE, Config.CAMPGROUND_DESCRIPTION)
 
 
-        self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(self.driver)
-
-
         flag = self.yelpCampCampgroundsPage.verify_add_campground()
+
+
+        self.yelpCampCampgroundsPage.nav_to_campgrounds_page()
 
         
         assert flag
+
 
 
     def test_3_delete_campground_without_review(self):
 
         
         self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(self.driver)
-
-
-        self.yelpCampCampgroundsPage.nav_to_campgrounds_page()
         
         
-        self.yelpCampCampgroundsPage = self.yelpCampCampgroundsPage.delete_campground(Config.CAMPGROUND_NAME)
-
-
-        self.yelpCampCampgroundsPage = yelpCampCampgroundsPage(self.driver)
+        self.yelpCampCampgroundsPage.delete_campground(Config.CAMPGROUND_NAME)
 
         
         flag = self.yelpCampCampgroundsPage.is_delete_campground_success_div_visible()
 
 
         assert flag
+
 
 
     def test_4_logout_and_verify(self):
@@ -93,9 +83,6 @@ class Test_yelpCampCampgroundsPage(yelpCampBaseTest):
         
         
         self.yelpCampCampgroundsPage.do_logout()
-
-
-        self.yelpCampCampgroundsPage.driver = self.driver
 
         
         flag = self.yelpCampCampgroundsPage.is_good_bye_div_visible()
