@@ -9,37 +9,134 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
 
     """ inherit driver initializer """
     def __init__(self, driver):
+
         super().__init__(driver)
+        """ By locators """
+        self.WELCOME_BACK_ALERT_DIV = ((By.XPATH, '//div[contains(text(),"Welcome back!")]'),"welcome_back_alert_div")
+        self.GOODBYE_ALERT_DIV = ((By.XPATH, '//div[contains(text(),"GOOD BYE!!")]'),"goodbye_alert_div")
+        self.MAP_CANVAS = ((By.CLASS_NAME, 'mapboxgl-canvas'),"map_canvas")
+        self.ONE_STAR_RATE_LABEL = ((By.XPATH,'//label[@for="first-rate1"]'),"one_star_rate_label")
+        self.TWO_STAR_RATE_LABEL = ((By.XPATH,'//label[@for="first-rate2"] '),"two_star_rate_label")
+        self.THREE_STAR_RATE_LABEL = ((By.XPATH,'//label[@for="first-rate3"]'),"three_star_rate_label")
+        self.FOUR_STAR_RATE_LABEL = ((By.XPATH,'//labe[@for="first-rate4"]'),"four_star_rate_label")
+        self.FIVE_STAR_RATE_LABEL = ((By.XPATH,'//label[@for="first-rate5"]'),"five_star_rate_label")
+        self.DESCRIPTION_TEXTAREA = ((By.ID, "body"),"description_textarea ")
+        self.SUBMIT_REVIEW_BUTTON = ((By.XPATH, '//button[text()="Submit"]'), 'submit_review_button')
+        self.LEAVE_A_REVIEW_HEADER = ((By.XPATH, '//h2[contains(text(),"Leave a Review")]'), 'leave_review_header')
+        self.EDIT_ATAG = ((By.XPATH,'//a[contains(text(),"Edit")]'), 'edit_campground_atag')
+        self.DELETE_CAMPGROUND_BUTTON = ((By.XPATH,'//button[text()="Delete Campground"]'), 'delete_campground_button')
+        self.VIEW_FIRST_CAMPGROUND_BUTTON = ((By.XPATH, '//a[contains(text(),"View My First Camp")]'), 'view_first_campground_button')
+        self.USERNAME_REVIEW_SEARCH = (By.XPATH, '//div[contains(text(),"'+Config.USERNAME+'")]')
+        self.REVIEW_IS_NOT_DEFINED_TAG = ((By.XPATH, '//h4[contains(text(),"Review is not defined")]'),"review_undefined_div")
+        self.DELETE_CAMPGROUND_SUCCESS_DIV = ((By.XPATH, '//div[contains(text(),"Successfully deleted campground!")]'),"review_undefined_div")
+        self.ADD_NEW_CAMPGROUND_SUCCESS_DIV = ((By.XPATH, '//div[contains(text(),"Successfully made a new campground!")]'),'add_new_campground_success_div')
+        self.CAMPGROUND_NAME_INPUT = ((By.ID, "title"), "campground_name_input")
+        self.CAMPGROUND_LOCATION_INPUT = ((By.ID,"location"),"campground_location_input")
+        self.CHOOSE_FILES_BUTTON = ((By.ID,"image"),"campground_file_input")
+        self.CAMPGROUND_PRICE = ((By.ID, "price"),"campground_price")
+        self.CAMPGROUND_DESCRIPTION = ((By.ID, "description"), "campground_description")
+        self.SUBMIT_NEW_CAMPGROUND_BUTTON = ((By.XPATH, '//button[contains(text(),"Submit")]'),"submit_new_campground_button")
+        self.CANCEL_ATAG = ((By.XPATH,'//a[text()="Cancel"]'),"cancel_new_campground")
+
+    def getWelcomeBackAlertDiv(self):
+
+        return self.WELCOME_BACK_ALERT_DIV
 
 
-    """ By locators """
-    WELCOME_BACK_ALERT_DIV = ((By.XPATH, '//div[contains(text(),"Welcome back!")]'),"welcome_back_alert_div")
-    GOODBYE_ALERT_DIV = ((By.XPATH, '//div[contains(text(),"GOOD BYE!!")]'),"goodbye_alert_div")
-    MAP_CANVAS = ((By.CLASS_NAME, 'mapboxgl-canvas'),"map_canvas")
-    ONE_STAR_RATE_LABEL = ((By.XPATH,'//label[@for="first-rate1"]'),"one_star_rate_label")
-    TWO_STAR_RATE_LABEL = ((By.XPATH,'//label[@for="first-rate2"] '),"two_star_rate_label")
-    THREE_STAR_RATE_LABEL = ((By.XPATH,'//label[@for="first-rate3"]'),"three_star_rate_label")
-    FOUR_STAR_RATE_LABEL = ((By.XPATH,'//labe[@for="first-rate4"]'),"four_star_rate_label")
-    FIVE_STAR_RATE_LABEL = ((By.XPATH,'//label[@for="first-rate5"]'),"five_star_rate_label")
-    DESCRIPTION_TEXTAREA = ((By.ID, "body"),"description_textarea ")
-    SUBMIT_REVIEW_BUTTON = ((By.XPATH, '//button[text()="Submit"]'), 'submit_review_button')
-    LEAVE_A_REVIEW_HEADER = ((By.XPATH, '//h2[contains(text(),"Leave a Review")]'), 'leave_review_header')
-    EDIT_ATAG = ((By.XPATH,'//a[contains(text(),"Edit")]'), 'edit_campground_atag')
-    DELETE_CAMPGROUND_BUTTON = ((By.XPATH,'//button[text()="Delete Campground"]'), 'delete_campground_button')
-    VIEW_FIRST_CAMPGROUND_BUTTON = ((By.XPATH, '//a[contains(text(),"View My First Camp")]'), 'view_first_campground_button')
-    USERNAME_REVIEW_SEARCH = (By.XPATH, '//div[contains(text(),"'+Config.USERNAME+'")]')
-    REVIEW_IS_NOT_DEFINED_TAG = ((By.XPATH, '//h4[contains(text(),"Review is not defined")]'),"review_undefined_div")
-    DELETE_CAMPGROUND_SUCCESS_DIV = ((By.XPATH, '//div[contains(text(),"Successfully deleted campground!")]'),"review_undefined_div")
-    ADD_NEW_CAMPGROUND_SUCCESS_DIV = ((By.XPATH, '//div[contains(text(),"Successfully made a new campground!")]'),'add_new_campground_success_div')
-    CAMPGROUND_NAME_INPUT = ((By.ID, "title"), "campground_name_input")
-    CAMPGROUND_LOCATION_INPUT = ((By.ID,"location"),"campground_location_input")
-    CHOOSE_FILES_BUTTON = ((By.ID,"image"),"campground_file_input")
-    CAMPGROUND_PRICE = ((By.ID, "price"),"campground_price")
-    CAMPGROUND_DESCRIPTION = ((By.ID, "description"), "campground_description")
-    SUBMIT_NEW_CAMPGROUND_BUTTON = ((By.XPATH, '//button[contains(text(),"Submit")]'),"submit_new_campground_button")
-    CANCEL_ATAG = ((By.XPATH,'//a[text()="Cancel"]'),"cancel_new_campground")
+    def getGoodbyeAlertDiv(self):
 
-    
+        return self.GOODBYE_ALERT_DIV
+
+    def getMapCanvas(self):
+
+        return self.MAP_CANVAS
+
+    def getOneStarRateLabel(self):
+
+        return self.ONE_STAR_RATE_LABEL
+
+    def getTwoStarLabel(self):
+
+        return self.TWO_STAR_RATE_LABEL
+
+    def getThreeStarLabel(self):
+
+        return self.THREE_STAR_RATE_LABEL
+
+    def getFourStarLabel(self):
+
+        return self.FOUR_STAR_RATE_LABEL
+
+    def getFiveStarLabel(self):
+
+        return self.FIVE_STAR_RATE_LABEL
+
+    def getDescriptionTextarea(self):
+
+        return self.DESCRIPTION_TEXTAREA
+
+    def getSubmitReviewButton(self):
+
+        return self.SUBMIT_REVIEW_BUTTON
+
+    def getLeaveAReviewButton(self):
+
+        return self.LEAVE_A_REVIEW_HEADER
+
+    def getEditATag(self):
+
+        return self.EDIT_ATAG
+
+    def getDeleteCampgroundButton(self):
+
+        return self.DELETE_CAMPGROUND_BUTTON
+
+    def getViewFirstCampgroundButton(self):
+
+        return self.VIEW_FIRST_CAMPGROUND_BUTTON
+
+    def getUsernameReviewSearch(self):
+
+        return self.USERNAME_REVIEW_SEARCH
+
+    def getReviewIsNotDefinedTag(self):
+
+        return self.REVIEW_IS_NOT_DEFINED_TAG
+
+    def getDeleteCampgroundSuccessDiv(self):
+
+        return self.DELETE_CAMPGROUND_SUCCESS_DIV
+
+    def getAddNewCampgroundsSuccessDiv(self):
+
+        return self.ADD_NEW_CAMPGROUND_SUCCESS_DIV
+
+    def getCampgroundNameInput(self):
+
+        return self.CAMPGROUND_NAME_INPUT
+
+    def getCampgroundLocationInput(self):
+
+        return self.CAMPGROUND_LOCATION_INPUT
+
+    def getChooseFilesButton(self):
+
+        return self.CHOOSE_FILES_BUTTON
+
+    def getCampgroundPrice(self):
+
+        return self.CAMPGROUND_PRICE
+
+    def getCampgroundDescription(self):
+
+        return self.SUBMIT_NEW_CAMPGROUND_BUTTON
+
+    def getCancelAtag(self):
+
+        return self.CANCEL_ATAG
+
+
+
     """
     REVIEW_DESCRIPTION_IDENTIFIER = (By.XPATH, '//h5[@class="card-title" and text()="'+ Config.REVIEW_DESCRIPTION +'"]')
     REVIEW_CARD_REVIEWER_IDENTIFIER = (By.CLASS_NAME, 'card-subtitle')

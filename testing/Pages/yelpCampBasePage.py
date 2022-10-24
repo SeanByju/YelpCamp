@@ -38,7 +38,7 @@ class yelpCampBasePage:
     # get current url
     def get_curr_url(self):
 
-        return self.driver.current_url
+        return self.driver.current_url 
 
 
     # set current url

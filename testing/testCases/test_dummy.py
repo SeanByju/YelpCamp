@@ -33,7 +33,7 @@ class Test_dummy(yelpCampBaseTest):
 
         self.yelpCampBasePage.nav_to_login_page()
 
-        self.yelpCampBasePage.nav_to_base_page()
+        self.yelpCampBasePage.nav_to_home_page()
 
         self.yelpCampBasePage.nav_to_campgrounds_page()
 
