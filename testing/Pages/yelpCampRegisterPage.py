@@ -1,24 +1,23 @@
 # page object for registeration page
 
-from selenium.webdriver import ActionChains
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+
 from selenium.webdriver.common.by import By
 
 from Pages.yelpCampBasePage import yelpCampBasePage
+from Pages.Locator import Locator
 
 class yelpCampRegisterPage(yelpCampBasePage):
     
     """ By locators"""
-    USERNAME = (By.ID, "username")
-    PASSWORD = (By.ID, "password")
-    EMAIL = (By.ID, "email")
-    REGISTER_BUTTON = (By.XPATH, '//nav//a[text()="Register"]')
+    USERNAME = (By.XPATH, Locator.REGISTER_USERNAME_INPUT)
+    PASSWORD = (By.XPATH, Locator.REGISTER_PASSWORD_INPUT)
+    EMAIL = (By.XPATH, Locator.REGISTER_EMAIL_INPUT)
+    REGISTER_BUTTON = (By.XPATH, Locator.REGISTER_BUTTON)
+    USERNAME_NAME = "register_username"
+    PASSWORD_NAME = "register_password"
+    EMAIL_NAME = "register_email"
+    REGISTER_BUTTON_NAME = "register_button"
 
-    """ constructor of the page class """
-    def __init__(self, driver):
-        
-        super().__init__(driver)
 
     """ Page Actions """
 

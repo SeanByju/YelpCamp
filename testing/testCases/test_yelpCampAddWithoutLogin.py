@@ -5,12 +5,12 @@ from Pages.yelpCampBasePage import yelpCampBasePage
 from Pages.yelpCampLoginPage import yelpCampLoginPage
 from Pages.yelpCampCampgroundsPage import yelpCampCampgroundsPage
 from TestCases.test_yelpCampBase import yelpCampBaseTest
-from conftest import init_driver
+# from conftest import init_driver
 from Config.config import Config
 from selenium.webdriver.common.by import By
 
 
-@pytest.mark.usefixtures("init_driver")
+# @pytest.mark.usefixtures("init_driver")
 class Test_yelpCampAddWithoutLogin(yelpCampBaseTest):
 
     # first test, login into your account and verify you logged in

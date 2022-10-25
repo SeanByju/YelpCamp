@@ -4,25 +4,42 @@ from selenium.webdriver.common.by import By
 
 from Config.config import Config
 from Pages.yelpCampBasePage import yelpCampBasePage
-from Pages.yelpCampCampgroundsPage import yelpCampCampgroundsPage
+from Pages.Locator import Locator
 
 
 class yelpCampLoginPage(yelpCampBasePage):
 
-    """inherit driver initializer"""
-    def __init__(self, driver):
-        super().__init__(driver)
-
     """ By locators """
-    USERNAME_INPUT = ((By.ID, "username"), "username_input")
-    PASSWORD_INPUT = ((By.ID, "password"), "password_input")
-    LOGIN_BUTTON = ((By.XPATH, '//button[text()="Login"]'), "login_button")
+    USERNAME_INPUT = (By.XPATH, Locator.LOGIN_USERNAME_INPUT)
+    PASSWORD_INPUT = (By.XPATH, Locator.LOGIN_PASSWORD_INPUT)
+    LOGIN_BUTTON = (By.XPATH, Locator.LOGIN_BUTTON)
     LOGIN_URL = Config.BASE_URL+"/login"
-    MUST_BE_SIGNED_IN_ALERT_DIV = ((By.XPATH, '//div[contains(text(),"you must be signed in")]'), 'must_be_signed_in_alert_div')
+    MUST_BE_SIGNED_IN_ALERT_DIV_NAME = (By.XPATH, Locator.MUST_BE_SIGNED_IN_ALERT_DIV)
+    USERNAME_INPUT_NAME = "username_input"
+    PASSWORD_INPUT_NAME = "password_input"
+    LOGIN_BUTTON_NAME = "login_button"
+    MUST_BE_SIGNED_IN_ALERT_DIV_NAME = "must_be_signed_in_alert_div"
     
 
 
     """ Page Actions """
+    
+    def getUsernameInput(self):
+
+        return self.USERNAME_INPUT
+
+    def getPasswordInput(self):
+
+        return self.PASSWORD_INPUT
+
+    def getLoginButton(self):
+
+        return self.LOGIN_BUTTON
+
+    def getMustBeSignedInAlertDiv(self):
+
+        return self.MUST_BE_SIGNED_IN_ALERT_DIV
+
 
     """use this function to login in to the website"""
     def do_login(self, username, password):

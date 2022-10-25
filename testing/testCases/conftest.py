@@ -8,6 +8,8 @@ from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from Config.config import Config
 import time
+import urllib3
+from urllib3.exceptions import InsecureRequestWarning
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.edge.service import Service
@@ -25,6 +27,7 @@ def init_driver(request):
 
     print("------------------------------setup-------------------------------")
     
+    urllib3.disable_warnings(InsecureRequestWarning)
     
     if getBrowser == "chrome":
         _driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
@@ -35,7 +38,6 @@ def init_driver(request):
     elif getBrowser == "edge":
         _driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()))
         
-
 
     _driver.get(Config.BASE_URL+subpage)
 
