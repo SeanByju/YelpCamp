@@ -1,7 +1,10 @@
+""" This is the where your test setup and repeatable test functions that are usable by all test cases reside """
+
 """ ************ IMPORTANT *****************"""
 """ SELENIUM EXECUTES FUNCTIONS IN THE TEST CLASS IN ALPHABETICAL ORDER, NOT BY THE ORDER OF HOW YOU WRITE THE SCRIPTS"""
+
+from lib2to3.pgen2 import driver
 import pytest
-import unittest
 import time
 import allure
 import urllib3
@@ -19,16 +22,19 @@ from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.edge.service import Service
 from datetime import datetime as dt
 from Pages.yelpCampBasePage import yelpCampBasePage
+from Pages.yelpCampHomePage import yelpCampHomePage
+from Pages.yelpCampLoginPage import yelpCampLoginPage
+from Pages.yelpCampCampgroundsPage import yelpCampCampgroundsPage
+from Pages.yelpCampRegisterPage import yelpCampRegisterPage
+from conftest import setup
 
-"adjust the subpage to determine the url you are going to start your automation on"
-subpage = ""
-""" browser options include chrome, firefox, and edge"""
-getBrowser = Config.browser
 
 
-"""@pytest.mark.usefixtures("init_driver")"""
-class yelpCampBaseTest(unittest.TestCase):
-
+@pytest.mark.usefixtures("setup")
+class yelpCampBaseTest:
+    
+    
+    """    
     def setUp(self):
 
         print("------------------------------setup-------------------------------")
@@ -43,6 +49,9 @@ class yelpCampBaseTest(unittest.TestCase):
             
         elif getBrowser == "edge":
             self.driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()))
+
+        # declare all page object in basetest file
+
 
         self.driver.get(Config.BASE_URL+subpage)
 
@@ -64,7 +73,9 @@ class yelpCampBaseTest(unittest.TestCase):
             print("------------------------------teardown-------------------------------")
             self.driver.close()
             self.driver.quit()
+    """
 
+    
     # get current url
     def get_curr_url(self):
 

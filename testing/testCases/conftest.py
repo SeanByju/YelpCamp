@@ -21,44 +21,47 @@ subpage = ""
 """ browser options include chrome, firefox, and edge"""
 getBrowser = Config.browser
 
+@pytest.fixture(params=["chrome","firefox","edge"],scope="class")
+def setup(request):
 
-@pytest.fixture(scope="class")
-def init_driver(request):
-
+    # setup procedure
+    
     print("------------------------------setup-------------------------------")
     
     urllib3.disable_warnings(InsecureRequestWarning)
-    
-    if getBrowser == "chrome":
+
+    if request.param == "chrome":
         _driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
-    elif getBrowser == "firefox":
+    elif request.param == "firefox":
         _driver = webdriver.Firefox(service= Service(GeckoDriverManager().install()))
         
-    elif getBrowser == "edge":
+    elif request.param == "edge":
         _driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()))
-        
-
+    
     _driver.get(Config.BASE_URL+subpage)
 
-    _driver.implicitly_wait(60)
+    _driver.set_page_load_timeout(30)
 
     _driver.delete_all_cookies()
+    
+    _driver.maximize_window()
 
     time_now = dt.now().strftime(Config.global_strftime)
-    
+
     allure.attach(_driver.get_screenshot_as_png(), name="init_driver_"+time_now+".png", attachment_type=allure.attachment_type.PNG)
-
-    request.cls.driver = _driver
   
-    yield request.cls.driver
+    request.cls.driver = _driver      
+  
+    yield _driver
 
+    # teardown procedure
+    
     time.sleep(2)
 
+    if (_driver != None):
+        print("------------------------------teardown-------------------------------")
+        _driver.close()
+        _driver.quit()
+
     
-    print("-----------------------------teardown-----------------------------")
-
-    request.cls.driver.close()
-
-    request.cls.driver.quit()
-
