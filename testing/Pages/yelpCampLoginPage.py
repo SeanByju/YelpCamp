@@ -44,11 +44,11 @@ class yelpCampLoginPage(yelpCampBasePage):
     """use this function to login in to the website"""
     def do_login(self, username, password):
         
-        self.do_send_keys_and_verify(self.USERNAME_INPUT[0],self.USERNAME_INPUT[1], username)
+        self.do_send_keys_and_report(self.USERNAME_INPUT[0],self.USERNAME_INPUT[1], username)
 
-        self.do_send_keys_and_verify(self.PASSWORD_INPUT[0],self.PASSWORD_INPUT[1], password)
+        self.do_send_keys_and_report(self.PASSWORD_INPUT[0],self.PASSWORD_INPUT[1], password)
         
-        self.do_click_and_verify(self.LOGIN_BUTTON[0], self.LOGIN_BUTTON[1])
+        self.do_click_and_report(self.LOGIN_BUTTON[0], self.LOGIN_BUTTON[1])
 
         # return the driver and initiate a campgrounds page object
         return self.driver

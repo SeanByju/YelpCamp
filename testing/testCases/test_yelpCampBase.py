@@ -17,48 +17,6 @@ from TestCases.conftest import setup
 class yelpCampBaseTest:
     
     
-    """    
-    def setUp(self):
-
-        print("------------------------------setup-------------------------------")
-        
-        urllib3.disable_warnings(InsecureRequestWarning)
-
-        if getBrowser == "chrome":
-            self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-
-        elif getBrowser == "firefox":
-            self.driver = webdriver.Firefox(service= Service(GeckoDriverManager().install()))
-            
-        elif getBrowser == "edge":
-            self.driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()))
-
-        # declare all page object in basetest file
-
-
-        self.driver.get(Config.BASE_URL+subpage)
-
-        self.driver.set_page_load_timeout(30)
-
-        self.driver.delete_all_cookies()
-        
-        self.driver.maximize_window()
-
-        time_now = dt.now().strftime(Config.global_strftime)
-    
-        allure.attach(self.driver.get_screenshot_as_png(), name="init_driver_"+time_now+".png", attachment_type=allure.attachment_type.PNG)
- 
-    def tearDown(self):
-
-        time.sleep(2)
-
-        if (self.driver != None):
-            print("------------------------------teardown-------------------------------")
-            self.driver.close()
-            self.driver.quit()
-    """
-
-    
     # get current url
     def get_curr_url(self):
 
@@ -78,7 +36,7 @@ class yelpCampBaseTest:
     
 
     # click web elements and take screenshots before and after so you can visually verify what actions occured
-    def do_click_and_verify(self, by_locator, element_name):
+    def do_click_and_report(self, by_locator, element_name):
 
         # move to the element
         self.driver.execute_script("arguments[0].scrollIntoView();", WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)))
@@ -108,7 +66,7 @@ class yelpCampBaseTest:
         WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)).send_keys(text)
 
     # send keys to web elements and take screenshots before and after the action is taken
-    def do_send_keys_and_verify(self, by_locator, element_name,  text):
+    def do_send_keys_and_report(self, by_locator, element_name,  text):
         
         # move to the element
         self.driver.execute_script("arguments[0].scrollIntoView();", WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(by_locator)))

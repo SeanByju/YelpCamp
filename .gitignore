@@ -1,5 +1,5 @@
 node_modules
-testing/config.py
+testing/Config/config.py
 testing/**/__pycache__
 testing/.pytest_cache
 testing/Reports*

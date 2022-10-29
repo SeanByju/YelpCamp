@@ -48,7 +48,7 @@ class Test_yelpCampLoginPage(yelpCampBaseTest):
         campgroundsPage = yelpCampCampgroundsPage()
         
         
-        self.do_click_and_verify(basePage.NAV_LOGIN_ATAG, basePage.NAV_LOGIN_ATAG_NAME)
+        self.do_click_and_report(basePage.NAV_LOGIN_ATAG, basePage.NAV_LOGIN_ATAG_NAME)
 
 
 
@@ -68,14 +68,14 @@ class Test_yelpCampLoginPage(yelpCampBaseTest):
         """ 4. Enter your Login credentials and submit """
         
         
-        self.do_send_keys_and_verify(loginPage.USERNAME_INPUT, loginPage.USERNAME_INPUT_NAME, Config.USERNAME)
+        self.do_send_keys_and_report(loginPage.USERNAME_INPUT, loginPage.USERNAME_INPUT_NAME, Config.USERNAME)
         
         
         
-        self.do_send_keys_and_verify(loginPage.PASSWORD_INPUT, loginPage.PASSWORD_INPUT_NAME, Config.PASSWORD)
+        self.do_send_keys_and_report(loginPage.PASSWORD_INPUT, loginPage.PASSWORD_INPUT_NAME, Config.PASSWORD)
         
        
-        self.do_click_and_verify(loginPage.LOGIN_BUTTON, loginPage.LOGIN_BUTTON_NAME)
+        self.do_click_and_report(loginPage.LOGIN_BUTTON, loginPage.LOGIN_BUTTON_NAME)
         
 
         

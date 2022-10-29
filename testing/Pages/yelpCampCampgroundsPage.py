@@ -248,21 +248,21 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
         # give a star reating to your review
         match stars:
             case "5":
-                self.do_click_and_verify(self.FIVE_STAR_RATE_LABEL[0],self.FIVE_STAR_RATE_LABEL[1])
+                self.do_click_and_report(self.FIVE_STAR_RATE_LABEL[0],self.FIVE_STAR_RATE_LABEL[1])
             case "4":
-                self.do_click_and_verify(self.FOUR_STAR_RATE_LABEL[0],self.FOUR_STAR_RATE_LABEL[1])
+                self.do_click_and_report(self.FOUR_STAR_RATE_LABEL[0],self.FOUR_STAR_RATE_LABEL[1])
             case "3":
-                self.do_click_and_verify(self.THREE_STAR_RATE_LABEL[0], self.THREE_STAR_RATE_LABEL[1])
+                self.do_click_and_report(self.THREE_STAR_RATE_LABEL[0], self.THREE_STAR_RATE_LABEL[1])
             case "2":
-                self.do_click_and_verify(self.TWO_STAR_RATE_LABEL[0], self.TWO_STAR_RATE_LABEL[1])
+                self.do_click_and_report(self.TWO_STAR_RATE_LABEL[0], self.TWO_STAR_RATE_LABEL[1])
             case "1":
-                self.do_click_and_verify(self.ONE_STAR_RATE_LABEL[0],self.ONE_STAR_RATE_LABEL[1])
+                self.do_click_and_report(self.ONE_STAR_RATE_LABEL[0],self.ONE_STAR_RATE_LABEL[1])
 
         # write the description for your review
-        self.do_send_keys_and_verify(self.DESCRIPTION_TEXTAREA[0], self.DESCRIPTION_TEXTAREA[1], review)
+        self.do_send_keys_and_report(self.DESCRIPTION_TEXTAREA[0], self.DESCRIPTION_TEXTAREA[1], review)
 
         # click the submit reivew button
-        self.do_click_and_verify(self.SUBMIT_REVIEW_BUTTON[0], self.SUBMIT_REVIEW_BUTTON[1])
+        self.do_click_and_report(self.SUBMIT_REVIEW_BUTTON[0], self.SUBMIT_REVIEW_BUTTON[1])
         
         return self.driver
     """
@@ -305,14 +305,14 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
     def delete_campground(self, campground_name):
         
         "locate the button where you can view that campsite's subpage"
-        self.do_click_and_verify, '//a[contains(text(),"View '+campground_name+'")]'), "view_campground")
+        self.do_click_and_report, '//a[contains(text(),"View '+campground_name+'")]'), "view_campground")
 
         "click the edit button"
-        self.do_click_and_verify(self.EDIT_ATAG[0], self.EDIT_ATAG[1])
+        self.do_click_and_report(self.EDIT_ATAG[0], self.EDIT_ATAG[1])
 
 
         "click the delete button"
-        self.do_click_and_verify(self.DELETE_CAMPGROUND_BUTTON[0], self.DELETE_CAMPGROUND_BUTTON[1])
+        self.do_click_and_report(self.DELETE_CAMPGROUND_BUTTON[0], self.DELETE_CAMPGROUND_BUTTON[1])
 
 
         return self.driver
@@ -351,27 +351,27 @@ class yelpCampCampgroundsPage(yelpCampBasePage):
         
 
         
-        self.do_send_keys_and_verify(self.CAMPGROUND_NAME_INPUT[0],self.CAMPGROUND_NAME_INPUT[1], name)
+        self.do_send_keys_and_report(self.CAMPGROUND_NAME_INPUT[0],self.CAMPGROUND_NAME_INPUT[1], name)
 
 
         
-        self.do_send_keys_and_verify(self.CAMPGROUND_LOCATION_INPUT[0], self.CAMPGROUND_LOCATION_INPUT[1], location)
+        self.do_send_keys_and_report(self.CAMPGROUND_LOCATION_INPUT[0], self.CAMPGROUND_LOCATION_INPUT[1], location)
 
 
 
-        self.do_send_keys_and_verify(self.CHOOSE_FILES_BUTTON[0], self.CHOOSE_FILES_BUTTON[1], image)
-
-
-        
-        self.do_send_keys_and_verify(self.CAMPGROUND_PRICE[0], self.CAMPGROUND_PRICE[1], price)
+        self.do_send_keys_and_report(self.CHOOSE_FILES_BUTTON[0], self.CHOOSE_FILES_BUTTON[1], image)
 
 
         
-        self.do_send_keys_and_verify(self.CAMPGROUND_DESCRIPTION[0], self.CAMPGROUND_DESCRIPTION[1], description)
+        self.do_send_keys_and_report(self.CAMPGROUND_PRICE[0], self.CAMPGROUND_PRICE[1], price)
 
 
         
-        self.do_click_and_verify(self.SUBMIT_NEW_CAMPGROUND_BUTTON[0], self.SUBMIT_NEW_CAMPGROUND_BUTTON[1])
+        self.do_send_keys_and_report(self.CAMPGROUND_DESCRIPTION[0], self.CAMPGROUND_DESCRIPTION[1], description)
+
+
+        
+        self.do_click_and_report(self.SUBMIT_NEW_CAMPGROUND_BUTTON[0], self.SUBMIT_NEW_CAMPGROUND_BUTTON[1])
 
 
         # return the new state of the campgrounds page since it has transisitioned after the submit button

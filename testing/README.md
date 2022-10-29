@@ -52,7 +52,7 @@ class Test_demo(yelpCampBaseTest):
         # 2. Navigate from the home page to the login page.
         
         
-        self.do_click_and_verify(basePage.NAV_LOGIN_ATAG, basePage.NAV_LOGIN_ATAG_NAME)
+        self.do_click_and_report(basePage.NAV_LOGIN_ATAG, basePage.NAV_LOGIN_ATAG_NAME)
 
 
         # 3. Verify that you successfully logged in by verifying that the welcome back div is visible on the campgrounds page.
@@ -72,15 +72,15 @@ class Test_demo(yelpCampBaseTest):
         # 4. Enter your Login credentials and submit
         
         
-        self.do_send_keys_and_verify(loginPage.USERNAME_INPUT, loginPage.USERNAME_INPUT_NAME, Config.USERNAME)
+        self.do_send_keys_and_report(loginPage.USERNAME_INPUT, loginPage.USERNAME_INPUT_NAME, Config.USERNAME)
         
         
         
-        self.do_send_keys_and_verify(loginPage.PASSWORD_INPUT, loginPage.PASSWORD_INPUT_NAME, Config.PASSWORD)
+        self.do_send_keys_and_report(loginPage.PASSWORD_INPUT, loginPage.PASSWORD_INPUT_NAME, Config.PASSWORD)
         
 
 
-        self.do_click_and_verify(loginPage.LOGIN_BUTTON, loginPage.LOGIN_BUTTON_NAME)
+        self.do_click_and_report(loginPage.LOGIN_BUTTON, loginPage.LOGIN_BUTTON_NAME)
         
         
         # 5. Verify that you logged in by checking that you navigated to the campgrounds page after logging in
@@ -101,7 +101,33 @@ class Test_demo(yelpCampBaseTest):
 
         WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(campgroundsPage.NAV_LOGOUT_ATAG)).click()
 
+```
 
+## config.py example
+```python
+class Config:
+
+    # options for browser include chrome, firefox, and edge
+    browser = "chrome"
+
+    # set the format for the screenshot that will be taken during the automation
+    global_strftime = "%d-%m-%Y_%H-%M-%S"
+
+    # login page inputs
+    BASE_URL = "https://morning-savannah-46253.herokuapp.com"
+    USERNAME = "test123"
+    PASSWORD = "test123"
+
+    # new campground inputs
+    CAMPGROUND_NAME = 'Redwoods Site'
+    CAMPGROUND_LOCATION = "San Francisco, CA"
+    UPLOAD_IMAGE = "C:\\Images\\test-image.jpg"
+    CAMPGROUND_PRICE = "100"
+    CAMPGROUND_DESCRIPTION = "test description"
+
+    # campgrounds review
+    REVIEW_DESCRIPTION = "test"
+    REVIEW_STAR_RATING = "5"
 ```
 
 

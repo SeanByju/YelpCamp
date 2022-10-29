@@ -47,7 +47,7 @@ class Test_yelpCampCampgroundsPageWithoutReview(yelpCampBaseTest):
 
         WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(basePage.NAV_LOGIN_ATAG)).click()
 
-        # self.do_click_and_verify(basePage.NAV_LOGIN_ATAG[0],basePage.NAV_LOGIN_ATAG[1])
+        # self.do_click_and_report(basePage.NAV_LOGIN_ATAG[0],basePage.NAV_LOGIN_ATAG[1])
 
 
         """ 3. Verify that you successfully logged in by verifying that the welcome back div is visible on the campgrounds page. you need to initilaize a campgrounds page object to accomplish this"""
