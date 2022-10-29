@@ -3,32 +3,15 @@
 """ ************ IMPORTANT *****************"""
 """ SELENIUM EXECUTES FUNCTIONS IN THE TEST CLASS IN ALPHABETICAL ORDER, NOT BY THE ORDER OF HOW YOU WRITE THE SCRIPTS"""
 
-from lib2to3.pgen2 import driver
 import pytest
 import time
 import allure
-import urllib3
-from urllib3.exceptions import InsecureRequestWarning
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from Config.config import Config
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains as AC
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.firefox.service import Service
-from selenium.webdriver.edge.service import Service
 from datetime import datetime as dt
-from Pages.yelpCampBasePage import yelpCampBasePage
-from Pages.yelpCampHomePage import yelpCampHomePage
-from Pages.yelpCampLoginPage import yelpCampLoginPage
-from Pages.yelpCampCampgroundsPage import yelpCampCampgroundsPage
-from Pages.yelpCampRegisterPage import yelpCampRegisterPage
-from conftest import setup
-
-
+from TestCases.conftest import setup
 
 @pytest.mark.usefixtures("setup")
 class yelpCampBaseTest:
